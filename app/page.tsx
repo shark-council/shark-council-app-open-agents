@@ -7,8 +7,8 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
+import { Textarea } from "@/components/ui/textarea";
 import { handleError } from "@/lib/error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
@@ -81,10 +81,10 @@ export default function IndexPage() {
                   data-invalid={fieldState.invalid}
                   data-disabled={isSubmitting}
                 >
-                  <FieldLabel htmlFor="idea-input">Trading idea</FieldLabel>
-                  <Input
+                  <FieldLabel htmlFor="idea">Trading idea</FieldLabel>
+                  <Textarea
                     {...field}
-                    id="idea-input"
+                    id="idea"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
                     placeholder="Should I long BTC if..."
