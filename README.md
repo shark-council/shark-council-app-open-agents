@@ -1,6 +1,6 @@
 # 🦈 Shark Council - App (Open Agents)
 
-Let ENS sharks roast your trade ideas, then execute the winners using the Uniswap API.
+Let ENS sharks roast your trade ideas, then execute the winners using Uniswap API.
 
 ## ⚡ Description
 
