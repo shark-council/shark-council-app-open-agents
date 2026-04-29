@@ -1,5 +1,9 @@
+import { Sidebar } from "@/components/layout/sidebar";
+import { SidebarInsetHeader } from "@/components/layout/sidebar-inset-header";
 import { QueryClientProvider } from "@/components/providers/query-client-provider";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { appConfig } from "@/config/app";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -39,15 +43,23 @@ export default function RootLayout({
       className={cn("antialiased", fontSans.variable, fontMono.variable)}
       suppressHydrationWarning
     >
-      <body className="min-h-dvh flex flex-col">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange
         >
           <QueryClientProvider>
-            <div className="flex-1">{children}</div>
-            <Toaster />
+            <TooltipProvider>
+              <SidebarProvider>
+                <Sidebar variant="inset" />
+                <SidebarInset>
+                  <SidebarInsetHeader />
+                  {children}
+                </SidebarInset>
+                <Toaster />
+              </SidebarProvider>
+            </TooltipProvider>
           </QueryClientProvider>
         </ThemeProvider>
       </body>
