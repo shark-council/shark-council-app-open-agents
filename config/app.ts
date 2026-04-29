@@ -8,4 +8,9 @@ export const appConfig = {
     name: "@kiv1n",
     url: "https://x.com/kiv1n",
   },
+  demoWallet: {
+    address: "0xB2D0f2aE79680A89f6B6869C2D07F4922827Acb2",
+    explorerUrl:
+      "https://basescan.org/address/0xB2D0f2aE79680A89f6B6869C2D07F4922827Acb2",
+  },
 } as const;
