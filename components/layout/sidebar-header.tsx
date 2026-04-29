@@ -3,6 +3,7 @@ import { appConfig } from "@/config/app";
 import Image from "next/image";
 import Link from "next/link";
 
+// TODO: Add a button with preconnected demo wallet
 export function SidebarHeader() {
   return (
     <OriginSidebarHeader>
