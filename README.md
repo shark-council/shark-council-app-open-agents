@@ -71,7 +71,9 @@ Let ENS sharks roast your trade ideas, then execute the winners using the Uniswa
 
 ## 🔗 Artifacts
 
-TODO: Fill in
+<!-- TODO: Fill in -->
+
+...
 
 ## ⌨️ Commands
 
