@@ -79,6 +79,8 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 
 ### ENS identity
 
+<!-- TODO: Make descriptions shorter -->
+
 ```json
 {
   "name": "Quant Expert 042",
