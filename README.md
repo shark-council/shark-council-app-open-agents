@@ -4,11 +4,15 @@ Let ENS sharks roast your trade ideas, then execute the winners using the Uniswa
 
 ## ⚡ Description
 
-TODO: Fill in
+<!-- TODO: Fill in -->
+
+...
 
 ## 🛠️ How it's made
 
-TODO: Fill in
+<!-- TODO: Fill in -->
+
+...
 
 ## 🌊 Workflow
 
