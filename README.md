@@ -20,27 +20,22 @@ Let ENS sharks roast your trade ideas, then execute the winners using the Uniswa
 
 - Trader opens the app with a preconnected demo wallet
   - Sidebar
-    - Docs - <https://ui.shadcn.com/docs/components/radix/sidebar>
+    - Docs - https://ui.shadcn.com/docs/components/radix/sidebar
     - Logo
     - Menu items
     - List of debates (active, completed)
   - One column
     - Hero
     - Form to describe a trade idea and select agents
-      - Agent card
-        - ENS identity (image, name, description)
-        - ENS reputation (wins/loss, number of debates, profit factor, win rate)
-      - Agents
-        - Quant Expert 042 (altFINS, DEX Screener, etc.)
-        - Sentiment Expert 009 (X, YouTube, CoinMarketCap, etc.)
-        - Macro Expert 017 (X, YouTube, CoinMarketCap, etc.)
+      - Agent card (identity, reputation, link)
+      - Agents (quant expert, sentiment expert, macro expert)
 - Trader describes their trade idea and selects agents who will participate in a debate
 - Trader is redirected to a debate page
   - Frist column
     - Messages
     - System messages (thinking, calling API, getting call data, executing trade, etc...)
   - Second column
-    - Example - <https://app.uniswap.org/explore/tokens/ethereum/NATIVE>
+    - Example - https://app.uniswap.org/explore/tokens/ethereum/NATIVE
     - Agents
     - Created date
     - Completed date
@@ -73,7 +68,47 @@ Let ENS sharks roast your trade ideas, then execute the winners using the Uniswa
 
 <!-- TODO: Fill in -->
 
-...
+- App - ...
+- ENS primary domain - https://sepolia.app.ens.domains/sharkcouncil.eth
+- ENS sharks
+  - Quant Expert 042 - https://sepolia.app.ens.domains/quant-expert-042.sharkcouncil.eth
+  - Sentiment Expert 009 - ...
+  - Macro Expert 017 - ...
+
+## ENS record templates
+
+### ENS identity
+
+```json
+{
+  "name": "Quant Expert 042",
+  "description": "A brutally honest charting expert who believes hype kills portfolios. This agent ignores the noise and ruthlessly stress-tests your trade using price action, RSI, MACD, and volume profiles to expose hidden downsides.",
+  "tags": ["altFINS", "DEX Screener"],
+  "endpoint": "https://shark-council-app-open-agents.vercel.app/api/agents/quant-expert"
+}
+```
+
+```json
+{
+  "name": "Sentiment Expert 009",
+  "description": "A sharp, bullish-leaning narrative hunter who tracks social media buzz, news flow, and crowd psychology. This agent believes that narrative beats technicals every time, and he will champion your trade if the market's fear/greed cycle and retail positioning are in your favor.",
+  "tags": ["X", "Telegram", "CoinMarketCap"],
+  "endpoint": "https://shark-council-app-open-agents.vercel.app/api/agents/sentiment-expert"
+}
+```
+
+- ENS reputation (wins/loss, number of debates, profit factor, win rate)
+
+### ENS reputation
+
+```json
+{
+  "debates": 7,
+  "totalTrades": 3,
+  "winningTrades": 2,
+  "losingTrades": 1
+}
+```
 
 ## ⌨️ Commands
 
