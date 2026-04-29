@@ -1,8 +1,8 @@
 import { appConfig } from "@/config/app";
+import { ExternalLinkIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { SidebarTrigger } from "../ui/sidebar";
-import { ExternalLinkIcon } from "lucide-react";
 
 export function SidebarInsetHeader() {
   return (
@@ -10,7 +10,7 @@ export function SidebarInsetHeader() {
       <SidebarTrigger className="-ml-1" />
       <Button variant="link" asChild>
         <Link href={appConfig.gitHubUrl} target="_blank">
-          <ExternalLinkIcon /> GitHub
+          GitHub <ExternalLinkIcon />
         </Link>
       </Button>
     </header>
