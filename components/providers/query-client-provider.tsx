@@ -2,7 +2,7 @@
 
 import {
   QueryClient,
-  QueryClientProvider as TRQQueryClientProvider,
+  QueryClientProvider as OriginClientProvider,
 } from "@tanstack/react-query";
 
 export function QueryClientProvider({
@@ -13,8 +13,6 @@ export function QueryClientProvider({
   const queryClient = new QueryClient();
 
   return (
-    <TRQQueryClientProvider client={queryClient}>
-      {children}
-    </TRQQueryClientProvider>
+    <OriginClientProvider client={queryClient}>{children}</OriginClientProvider>
   );
 }
