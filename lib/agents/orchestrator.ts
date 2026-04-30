@@ -99,7 +99,6 @@ async function callDebateAgent(
   return data.data.response;
 }
 
-// TODO: Replace executor with tools
 async function callExecutorAgent(message: string): Promise<string> {
   const res = await fetch(`${BASE_URL}/api/agents/executor`, {
     method: "POST",
