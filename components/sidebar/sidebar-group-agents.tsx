@@ -32,10 +32,13 @@ export function SidebarGroupAgents() {
           <SidebarMenuItem key={index}>
             <SidebarMenuButton asChild>
               <Link href={agent.url} target="_blank">
-                <Avatar className="size-7">
-                  <AvatarImage src={agent.identity.image} />
-                  <AvatarFallback className="bg-background">
-                    <BotIcon className="text-foreground" />
+                <Avatar size="sm">
+                  <AvatarImage
+                    src={agent.identity.image}
+                    alt={agent.identity.name}
+                  />
+                  <AvatarFallback>
+                    <BotIcon />
                   </AvatarFallback>
                 </Avatar>
                 <span>{agent.identity.name}</span>
