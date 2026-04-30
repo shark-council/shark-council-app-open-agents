@@ -86,10 +86,10 @@ export default function IndexPage() {
           className="w-full rounded-md"
         />
         {/* Title */}
-        <h2 className="text-3xl font-bold tracking-tight text-center mt-6">
+        <h1 className="text-4xl font-extrabold tracking-tight text-balance text-center mt-8">
           Let ENS sharks roast your trade ideas, then execute the winners using
           Uniswap API
-        </h2>
+        </h1>
         {/* Form */}
         <form
           id="form"
@@ -135,7 +135,10 @@ export default function IndexPage() {
                   <FieldDescription>
                     Choose at least two ENS Sharks to start roasting
                   </FieldDescription>
-                  <FieldGroup data-slot="checkbox-group">
+                  <FieldGroup
+                    data-slot="checkbox-group"
+                    className="data-[slot=checkbox-group]:gap-6"
+                  >
                     {agents.map((agent) => {
                       const isChecked = field.value.includes(agent.id);
                       return (
