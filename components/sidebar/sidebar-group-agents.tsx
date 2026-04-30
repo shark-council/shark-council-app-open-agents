@@ -7,17 +7,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { agentConfig } from "@/config/agent";
 import { ExternalLinkIcon, Plus } from "lucide-react";
 import Link from "next/link";
 
-// TODO: Fill in urls
 const agents = [
-  {
-    name: "Quant Expert 042",
-    url: "https://sepolia.app.ens.domains/quant-expert-042.sharkcouncil.eth",
-  },
-  { name: "Sentiment Expert 009", url: "/" },
-  { name: "Macro Expert 017", url: "/" },
+  agentConfig.quantExpert042,
+  agentConfig.sentimentExpert009,
+  agentConfig.macroExpert017,
 ];
 
 export function SidebarGroupAgents() {
@@ -32,10 +29,10 @@ export function SidebarGroupAgents() {
       <SidebarGroupContent></SidebarGroupContent>
       <SidebarMenu>
         {agents.map((agent) => (
-          <SidebarMenuItem key={agent.name}>
+          <SidebarMenuItem key={agent.identity.name}>
             <SidebarMenuButton asChild>
               <Link href={agent.url} target="_blank">
-                {agent.name} <ExternalLinkIcon />
+                {agent.identity.name} <ExternalLinkIcon />
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -68,45 +68,34 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 
 <!-- TODO: Fill in -->
 
-- App - ...
+- App - https://shark-council-app-open-agents.vercel.app/
 - ENS primary domain - https://sepolia.app.ens.domains/sharkcouncil.eth
 - ENS sharks
   - Quant Expert 042 - https://sepolia.app.ens.domains/quant-expert-042.sharkcouncil.eth
   - Sentiment Expert 009 - ...
   - Macro Expert 017 - ...
 
-## ENS record templates
+## ENS record examples
 
 ### ENS identity
-
-<!-- TODO: Make descriptions shorter -->
 
 ```json
 {
   "name": "Quant Expert 042",
-  "description": "A brutally honest charting expert who believes hype kills portfolios. This agent ignores the noise and ruthlessly stress-tests your trade using price action, RSI, MACD, and volume profiles to expose hidden downsides.",
+  "description": "Anti-hype charting expert. Ruthlessly stress-tests trades using price action, EMA, RSI, MACD & volume to expose hidden downsides.",
+  "image": "https://shark-council-app-open-agents.vercel.app/images/agents/quant-expert.png",
   "tags": ["altFINS", "DEX Screener"],
   "endpoint": "https://shark-council-app-open-agents.vercel.app/api/agents/quant-expert"
 }
 ```
-
-```json
-{
-  "name": "Sentiment Expert 009",
-  "description": "A sharp, bullish-leaning narrative hunter who tracks social media buzz, news flow, and crowd psychology. This agent believes that narrative beats technicals every time, and he will champion your trade if the market's fear/greed cycle and retail positioning are in your favor.",
-  "tags": ["X", "Telegram", "CoinMarketCap"],
-  "endpoint": "https://shark-council-app-open-agents.vercel.app/api/agents/sentiment-expert"
-}
-```
-
-- ENS reputation (wins/loss, number of debates, profit factor, win rate)
 
 ### ENS reputation
 
 ```json
 {
   "debates": 7,
-  "totalTrades": 3,
+  "totalTrades": 4,
+  "closedTrades": 3,
   "winningTrades": 2,
   "losingTrades": 1
 }
