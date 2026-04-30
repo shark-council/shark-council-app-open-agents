@@ -1,4 +1,5 @@
 import { DebateChat } from "@/components/debates/debate-chat";
+import { DebateDetails } from "@/components/debates/debate-details";
 
 export default async function DebatePage({
   params,
@@ -7,16 +8,13 @@ export default async function DebatePage({
     id: string;
   }>;
 }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id } = await params;
 
   return (
     <main className="flex flex-1 flex-row gap-4 px-4 py-4">
-      <div className="flex-1">
-        <DebateChat />
-      </div>
-      <div className="flex-1 bg-accent">
-        <p className="text-accent-foreground">This is debate {id}!</p>
-      </div>
+      <DebateChat className="flex-1" />
+      <DebateDetails className="flex-1" />
     </main>
   );
 }

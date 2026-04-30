@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { DebateChatMessage as DebateChatMessageType } from "@/types/debate";
@@ -97,6 +103,11 @@ export function DebateChat(props: { className?: ClassValue }) {
 
   return (
     <Card className={cn(props.className)}>
+      {/* Header */}
+      <CardHeader className="border-b">
+        <CardTitle>Chat</CardTitle>
+      </CardHeader>
+      {/* Content */}
       <CardContent>
         <div className="flex flex-col gap-4">
           {messages.length === 0 && (
@@ -122,7 +133,7 @@ export function DebateChat(props: { className?: ClassValue }) {
           )}
         </div>
       </CardContent>
-
+      {/* Footer */}
       <CardFooter ref={bottomRef}>
         <DebateChatInput
           onSubmit={handleSendMessage}
