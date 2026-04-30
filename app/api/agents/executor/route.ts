@@ -1,9 +1,10 @@
-import { createFailedApiResponse } from "@/lib/api";
+import { invokeAgent } from "@/lib/agents/executor";
+import { createFailedApiResponse, createSuccessApiResponse } from "@/lib/api";
 import { getErrorString } from "@/lib/error";
+import { HumanMessage } from "langchain";
 import { NextRequest } from "next/server";
 import z from "zod";
 
-// TODO: Implement
 export async function POST(request: NextRequest) {
   try {
     console.log("[Executor API] Handling post request...");
@@ -19,10 +20,16 @@ export async function POST(request: NextRequest) {
       return createFailedApiResponse({ message: "Invalid request body" }, 400);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { message } = bodyParseResult.data;
 
-    throw new Error("Not implemented");
+    const agentResponse = await invokeAgent([new HumanMessage(message)]);
+
+    const response =
+      typeof agentResponse.content === "string"
+        ? agentResponse.content
+        : JSON.stringify(agentResponse.content);
+
+    return createSuccessApiResponse({ response });
   } catch (error) {
     console.error(
       `[Executor API] Failed to handle post request: ${getErrorString(error)}`,
