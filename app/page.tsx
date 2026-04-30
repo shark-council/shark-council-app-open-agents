@@ -1,5 +1,7 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -17,6 +19,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { agentConfig } from "@/config/agent";
 import { handleError } from "@/lib/error";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  BarChart3Icon,
+  BotIcon,
+  CheckCheckIcon,
+  CircleCheck,
+  CircleXIcon,
+  MessageCircleIcon,
+  TagsIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -33,8 +44,8 @@ export default function IndexPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSchema = z.object({
-    idea: z.string().min(1, "Idea is required"),
-    agents: z.array(z.string()).min(1, "Select at least one agent"),
+    idea: z.string().min(1, "Trading idea is required"),
+    agents: z.array(z.string()).min(2, "Select at least two ENS sharks"),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -87,6 +98,7 @@ export default function IndexPage() {
           className="border rounded-md p-4 mt-8"
         >
           <FieldGroup>
+            {/* Idea */}
             <Controller
               name="idea"
               control={form.control}
@@ -96,6 +108,9 @@ export default function IndexPage() {
                   data-disabled={isSubmitting}
                 >
                   <FieldLabel htmlFor="idea">Trading idea</FieldLabel>
+                  <FieldDescription>
+                    Describe the trading idea you want roasted
+                  </FieldDescription>
                   <Textarea
                     {...field}
                     id="idea"
@@ -110,19 +125,19 @@ export default function IndexPage() {
                 </Field>
               )}
             />
+            {/* Agents */}
             <Controller
               name="agents"
               control={form.control}
               render={({ field, fieldState }) => (
                 <FieldSet>
-                  <FieldLegend variant="label">Select agents</FieldLegend>
+                  <FieldLegend variant="label">ENS sharks</FieldLegend>
                   <FieldDescription>
-                    Choose at least one ENS shark to join the debate.
+                    Choose at least two ENS Sharks to start roasting
                   </FieldDescription>
                   <FieldGroup data-slot="checkbox-group">
                     {agents.map((agent) => {
                       const isChecked = field.value.includes(agent.id);
-
                       return (
                         <Field
                           key={agent.id}
@@ -151,13 +166,70 @@ export default function IndexPage() {
                               field.onChange(nextValue);
                             }}
                           />
+                          {/* Avatar */}
+                          <Avatar size="lg">
+                            <AvatarImage
+                              src={agent.identity.image}
+                              alt={agent.identity.name}
+                            />
+                            <AvatarFallback>
+                              <BotIcon />
+                            </AvatarFallback>
+                          </Avatar>
                           <FieldContent>
+                            {/* Name */}
                             <FieldLabel htmlFor={agent.id}>
                               {agent.identity.name}
                             </FieldLabel>
+                            {/* Description */}
                             <FieldDescription>
                               {agent.identity.description}
                             </FieldDescription>
+                            {/* Reputation */}
+                            <div className="flex flex-wrap gap-2 mt-1">
+                              <Badge variant="default" data-icon="inline-start">
+                                <MessageCircleIcon />
+                                Debates {agent.reputation.debates}
+                              </Badge>
+                              <Badge variant="default" data-icon="inline-start">
+                                <BarChart3Icon />
+                                Trades {agent.reputation.totalTrades}
+                              </Badge>
+                              <Badge
+                                variant="secondary"
+                                data-icon="inline-start"
+                              >
+                                <CheckCheckIcon />
+                                Closed {agent.reputation.closedTrades}
+                              </Badge>
+                              <Badge
+                                variant="secondary"
+                                data-icon="inline-start"
+                              >
+                                <CircleCheck />
+                                Winning {agent.reputation.winningTrades}
+                              </Badge>
+                              <Badge
+                                variant="secondary"
+                                data-icon="inline-start"
+                              >
+                                <CircleXIcon />
+                                Losing {agent.reputation.losingTrades}
+                              </Badge>
+                            </div>
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2 mt-1">
+                              {agent.identity.tags.map((tag, index) => (
+                                <Badge
+                                  key={index}
+                                  variant="outline"
+                                  data-icon="inline-start"
+                                >
+                                  <TagsIcon />
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
                           </FieldContent>
                         </Field>
                       );
@@ -171,7 +243,7 @@ export default function IndexPage() {
             />
             <Button type="submit" form="form" disabled={isSubmitting}>
               {isSubmitting && <Spinner />}
-              Submit
+              Start roasting
             </Button>
           </FieldGroup>
         </form>
