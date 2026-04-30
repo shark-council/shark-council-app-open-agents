@@ -12,7 +12,7 @@ export function DebateDetails(props: { className?: ClassValue }) {
           <CardTitle>Started</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>{new Date().toLocaleString()}</p>
+          <p>{new Date("2026-04-30T09:42:42Z").toLocaleString()}</p>
         </CardContent>
       </Card>
       <Card>

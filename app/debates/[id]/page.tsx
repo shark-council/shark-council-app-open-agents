@@ -12,7 +12,7 @@ export default async function DebatePage({
   const { id } = await params;
 
   return (
-    <main className="flex flex-1 flex-row gap-4 px-4 py-4">
+    <main className="flex flex-1 flex-row items-start gap-4 px-4 py-4">
       <DebateChat className="flex-3" />
       <DebateDetails className="flex-2" />
     </main>
