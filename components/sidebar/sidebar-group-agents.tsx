@@ -22,9 +22,8 @@ export function SidebarGroupAgents() {
     <SidebarGroup>
       <SidebarGroupLabel>ENS sharks</SidebarGroupLabel>
       <SidebarGroupAction asChild>
-        {/* TODO: Define the href */}
-        <Link href="/">
-          <Plus /> <span className="sr-only">New ENS shark</span>
+        <Link href="/agents/listing">
+          <Plus /> <span className="sr-only">List ENS shark</span>
         </Link>
       </SidebarGroupAction>
       <SidebarMenu>
