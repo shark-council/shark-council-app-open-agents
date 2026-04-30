@@ -76,7 +76,7 @@ export default function IndexPage() {
       <div className="max-w-2xl">
         {/* Hero */}
         <Image
-          src="/images/hero.png"
+          src="/images/hero.gif"
           alt="Hero"
           priority={false}
           width="100"
