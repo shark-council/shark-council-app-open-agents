@@ -33,11 +33,14 @@ export function DebateDetails(props: { className?: ClassValue }) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
+            <p>Token: NA</p>
             <p>Status: NA</p>
-            <p>Entry price: NA</p>
             <p>Entry date: NA</p>
-            <p>Exit price: NA</p>
+            <p>Entry price: NA</p>
+            <p>Entry amount: NA</p>
             <p>Exit date: NA</p>
+            <p>Exit price: NA</p>
+            <p>Exit amount: NA</p>
             <p>PnL: NA</p>
           </div>
         </CardContent>
