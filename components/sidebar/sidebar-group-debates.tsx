@@ -12,15 +12,15 @@ import Link from "next/link";
 const debates = [
   {
     name: "Should I long BTC if Powell gives a clear dovish signal today, considering the massive $464B open interest?",
-    url: "/",
+    url: "/debates/69f301d4affcda2138291a77",
   },
   {
     name: "Does it make sense to short Bitcoin if the FOMC delivers a hawkish surprise alongside the 3.75% rate hold?",
-    url: "/",
+    url: "/debates/69f301dcbc8553bd11810a4f",
   },
   {
     name: "Is now a good time to go long on BTC, betting that the 3.75% rate hold brings a dovish transition speech?",
-    url: "/",
+    url: "/debates/69f301e28eff03239496e370",
   },
 ];
 

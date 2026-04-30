@@ -29,9 +29,9 @@ import {
   TagsIcon,
 } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
 import z from "zod";
 
 const agents = [
@@ -41,6 +41,7 @@ const agents = [
 ];
 
 export default function IndexPage() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSchema = z.object({
@@ -56,18 +57,16 @@ export default function IndexPage() {
     },
   });
 
+  // TODO: Create a debate and pass the debate ID in the URL
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleSubmit(data: z.infer<typeof formSchema>) {
     try {
       console.log("[Component] Submitting idea...");
       setIsSubmitting(true);
 
-      console.log({ data });
-
-      form.reset();
-      toast.success("Idea submitted!");
+      router.push("/debates/69f301e95ddf004b0f080b4d");
     } catch (error) {
       handleError({ error, toastTitle: "Failed to submit idea" });
-    } finally {
       setIsSubmitting(false);
     }
   }
