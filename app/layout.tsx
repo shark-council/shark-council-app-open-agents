@@ -1,6 +1,6 @@
-import { Sidebar } from "@/components/layout/sidebar";
-import { SidebarInsetHeader } from "@/components/layout/sidebar-inset-header";
 import { QueryClientProvider } from "@/components/providers/query-client-provider";
+import { Sidebar } from "@/components/sidebar/sidebar";
+import { SidebarInsetHeader } from "@/components/sidebar/sidebar-inset-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
