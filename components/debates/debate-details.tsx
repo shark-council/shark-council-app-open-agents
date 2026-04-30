@@ -9,7 +9,7 @@ export function DebateDetails(props: { className?: ClassValue }) {
     <div className={cn("flex flex-col gap-3", props.className)}>
       <Card>
         <CardHeader className="border-b">
-          <CardTitle>Created</CardTitle>
+          <CardTitle>Started</CardTitle>
         </CardHeader>
         <CardContent>
           <p>{new Date().toLocaleString()}</p>
