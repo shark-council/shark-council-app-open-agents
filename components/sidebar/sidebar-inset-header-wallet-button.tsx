@@ -36,8 +36,19 @@ export function SidebarInsetHeaderWalletButton() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-full">
         <DropdownMenuItem asChild>
-          <Link href={appConfig.demoWallet.explorerUrl} target="_blank">
-            <GlobeIcon /> Blockchain Explorer
+          <Link
+            href={appConfig.demoWallet.baseBlockchainExplorer}
+            target="_blank"
+          >
+            <GlobeIcon /> Base Blockchain Explorer
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link
+            href={appConfig.demoWallet.sepoliaBlockchainExplorer}
+            target="_blank"
+          >
+            <GlobeIcon /> Sepolia Blockchain Explorer
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem disabled={true}>

@@ -10,7 +10,9 @@ export const appConfig = {
   },
   demoWallet: {
     address: "0xB2D0f2aE79680A89f6B6869C2D07F4922827Acb2",
-    explorerUrl:
+    baseBlockchainExplorer:
       "https://basescan.org/address/0xB2D0f2aE79680A89f6B6869C2D07F4922827Acb2",
+    sepoliaBlockchainExplorer:
+      "https://sepolia.etherscan.io/address/0xB2D0f2aE79680A89f6B6869C2D07F4922827Acb2",
   },
 } as const;
