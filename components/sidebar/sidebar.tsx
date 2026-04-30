@@ -8,6 +8,7 @@ import { SidebarFooter } from "./sidebar-footer";
 import { SidebarGroupAgents } from "./sidebar-group-agents";
 import { SidebarGroupDebates } from "./sidebar-group-debates";
 import { SidebarHeader } from "./sidebar-header";
+import { SidebarGroupLinks } from "./sidebar-group-links";
 
 export function Sidebar({
   ...props
@@ -18,6 +19,7 @@ export function Sidebar({
       <SidebarContent>
         <SidebarGroupDebates />
         <SidebarGroupAgents />
+        <SidebarGroupLinks />
       </SidebarContent>
       <SidebarFooter />
     </OriginSidebar>

@@ -1,7 +1,6 @@
 import {
   SidebarGroup,
   SidebarGroupAction,
-  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
@@ -11,9 +10,18 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 
 const debates = [
-  { name: "Debate 01", url: "/" },
-  { name: "Debate 02", url: "/" },
-  { name: "Debate 03", url: "/" },
+  {
+    name: "Should I long BTC if Powell gives a clear dovish signal today, considering the massive $464B open interest?",
+    url: "/",
+  },
+  {
+    name: "Does it make sense to short Bitcoin if the FOMC delivers a hawkish surprise alongside the 3.75% rate hold?",
+    url: "/",
+  },
+  {
+    name: "Is now a good time to go long on BTC, betting that the 3.75% rate hold brings a dovish transition speech?",
+    url: "/",
+  },
 ];
 
 export function SidebarGroupDebates() {
@@ -25,12 +33,13 @@ export function SidebarGroupDebates() {
           <Plus /> <span className="sr-only">New debate</span>
         </Link>
       </SidebarGroupAction>
-      <SidebarGroupContent></SidebarGroupContent>
       <SidebarMenu>
-        {debates.map((debate) => (
-          <SidebarMenuItem key={debate.name}>
+        {debates.map((debate, index) => (
+          <SidebarMenuItem key={index}>
             <SidebarMenuButton asChild>
-              <Link href={debate.url}>{debate.name}</Link>
+              <Link href={debate.url}>
+                <span>{debate.name}</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
