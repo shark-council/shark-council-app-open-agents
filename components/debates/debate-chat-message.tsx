@@ -68,7 +68,7 @@ export function DebateChatMessage(props: { message: DebateChatMessageType }) {
           </Badge>
           {isFinal && (
             <span className="text-xs text-muted-foreground font-medium">
-              Verdict
+              Final message
             </span>
           )}
           {isThinking && (
