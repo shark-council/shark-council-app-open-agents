@@ -60,10 +60,14 @@ function validateSwap(swap: {
 export async function executeSwap(
   tokenIn: Address,
   tokenOut: Address,
-  amount: string
+  amount: string,
 ) {
   const API_KEY = process.env.UNISWAP_API_KEY;
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
+  const FEE_BPS = process.env.FEE_BPS
+    ? parseInt(process.env.FEE_BPS, 10)
+    : undefined;
+  const FEE_RECIPIENT = process.env.FEE_RECIPIENT as Address | undefined;
 
   if (!API_KEY) throw new Error("UNISWAP_API_KEY is not set");
   if (!PRIVATE_KEY) throw new Error("PRIVATE_KEY is not set");
@@ -115,20 +119,30 @@ export async function executeSwap(
 
   // 2. Get quote
   console.log(`[Uniswap] Fetching quote for swap...`);
-  const quoteRes = await axios.post(
-    `${API_URL}/quote`,
-    {
-      swapper: account.address,
-      tokenIn,
-      tokenOut,
-      tokenInChainId: String(chainId),
-      tokenOutChainId: String(chainId),
-      amount,
-      type: "EXACT_INPUT",
-      slippageTolerance: 0.5,
-    },
-    { headers },
-  );
+
+  const quoteParams: Record<string, unknown> = {
+    swapper: account.address,
+    tokenIn,
+    tokenOut,
+    tokenInChainId: String(chainId),
+    tokenOutChainId: String(chainId),
+    amount,
+    type: "EXACT_INPUT",
+    slippageTolerance: 0.5,
+  };
+
+  if (FEE_BPS !== undefined && !isNaN(FEE_BPS) && FEE_RECIPIENT) {
+    quoteParams.integratorFees = [
+      {
+        bips: FEE_BPS,
+        recipient: FEE_RECIPIENT,
+      },
+    ];
+  }
+
+  const quoteRes = await axios.post(`${API_URL}/quote`, quoteParams, {
+    headers,
+  });
 
   const quoteResponse = quoteRes.data;
   console.log(
