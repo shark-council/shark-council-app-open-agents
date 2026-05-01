@@ -25,7 +25,6 @@ export function DebateDetails(props: { className?: ClassValue }) {
         </CardContent>
       </Card>
       <Card>
-        <Card></Card>
         <CardHeader className="border-b">
           <CardTitle>ENS sharks</CardTitle>
         </CardHeader>
