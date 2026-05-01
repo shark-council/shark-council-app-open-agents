@@ -39,7 +39,7 @@ export function DebateChatMessage(props: { message: DebateChatMessageType }) {
     <div
       className={cn(
         "flex gap-3 rounded-lg border p-4",
-        isFinal && " border-primary/40 bg-primary/5",
+        isFinal && " border-accent/40 bg-accent/5",
         isThinking && "opacity-60",
       )}
     >
