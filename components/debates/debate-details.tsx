@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { ClassValue } from "clsx";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
+// TODO: Add agent wallet address, balance
+// TODO: Add trade chain, transactions
 export function DebateDetails(props: { className?: ClassValue }) {
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
