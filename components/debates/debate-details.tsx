@@ -4,8 +4,6 @@ import { cn } from "@/lib/utils";
 import { ClassValue } from "clsx";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
-// TODO: Add agent wallet address, balance
-// TODO: Add trade chain, transactions
 export function DebateDetails(props: { className?: ClassValue }) {
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
@@ -18,6 +16,16 @@ export function DebateDetails(props: { className?: ClassValue }) {
         </CardContent>
       </Card>
       <Card>
+        <Card>
+          <CardHeader className="border-b">
+            <CardTitle>Wallet</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Address: NA</p>
+            <p>Balance: NA</p>
+          </CardContent>
+        </Card>
+        <Card></Card>
         <CardHeader className="border-b">
           <CardTitle>ENS sharks</CardTitle>
         </CardHeader>
@@ -25,7 +33,7 @@ export function DebateDetails(props: { className?: ClassValue }) {
           <div className="flex flex-col gap-2">
             <p>Sentiment Expert 009</p>
             <p>Quant Expert 042</p>
-            <p>Fee: NA</p>
+            <p>Integrator fee: NA</p>
           </div>
         </CardContent>
       </Card>
@@ -35,14 +43,17 @@ export function DebateDetails(props: { className?: ClassValue }) {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
+            <p>Chain: NA</p>
             <p>Token: NA</p>
             <p>Status: NA</p>
             <p>Entry date: NA</p>
             <p>Entry price: NA</p>
             <p>Entry amount: NA</p>
+            <p>Entry transaction hash: NA</p>
             <p>Exit date: NA</p>
             <p>Exit price: NA</p>
             <p>Exit amount: NA</p>
+            <p>Exit transaction hash: NA</p>
             <p>PnL: NA</p>
           </div>
         </CardContent>
