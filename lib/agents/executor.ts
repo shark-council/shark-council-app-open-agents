@@ -144,12 +144,13 @@ const executeUniswapSwapTool = tool(
   async ({ tokenIn, tokenOut, amount }) => {
     try {
       console.log(`[Executor] Executing swap...`);
+      const chain = uniswapConfig.chain;
       const transactionHash = await executeSwap(
         tokenIn as `0x${string}`,
         tokenOut as `0x${string}`,
         amount,
       );
-      return `Swap executed successfully, transaction hash: ${transactionHash}`;
+      return `Swap executed successfully, chain: ${JSON.stringify(chain)}, transaction hash: ${transactionHash}`;
     } catch (error) {
       console.error(
         `[Executor] Swap execution failed, error: ${getErrorString(error)}`,
