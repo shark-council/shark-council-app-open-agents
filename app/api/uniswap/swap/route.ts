@@ -24,13 +24,13 @@ export async function POST(request: NextRequest) {
 
     const { tokenIn, tokenOut, amount } = bodyParseResult.data;
 
-    const txHash = await executeSwap(
+    const transactionHash = await executeSwap(
       tokenIn as Address,
       tokenOut as Address,
       amount,
     );
 
-    return createSuccessApiResponse({ txHash });
+    return createSuccessApiResponse({ transactionHash });
   } catch (error) {
     console.error(
       `[Uniswap Swap API] Failed to handle post request: ${getErrorString(error)}`,

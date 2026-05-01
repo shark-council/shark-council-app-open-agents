@@ -1,18 +1,16 @@
+import { uniswapConfig } from "@/config/uniswap";
 import axios from "axios";
 import {
-  createWalletClient,
   createPublicClient,
+  createWalletClient,
   http,
   isAddress,
   isHex,
   type Address,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { base } from "viem/chains";
 
-const API_URL = "https://trade-api.gateway.uniswap.org/v1";
-
-// Helper to prepare /swap request body — routing-aware permitData handling
+// Helper to prepare swap request body
 function prepareSwapRequest(
   quoteResponse: Record<string, unknown>,
   signature?: string,
@@ -61,26 +59,25 @@ export async function executeSwap(
   tokenIn: Address,
   tokenOut: Address,
   amount: string,
-) {
+): Promise<`0x${string}`> {
   const API_KEY = process.env.UNISWAP_API_KEY;
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
-  const FEE_BPS = process.env.FEE_BPS
-    ? parseInt(process.env.FEE_BPS, 10)
-    : undefined;
-  const FEE_RECIPIENT = process.env.FEE_RECIPIENT as Address | undefined;
+  const INTEGRATOR_FEE_BIPS = process.env.UNISWAP_INTEGRATOR_FEE_BIPS;
+  const INTEGRATOR_FEE_RECIPIENT = process.env.UNISWAP_INTEGRATOR_FEE_RECIPIENT;
 
   if (!API_KEY) throw new Error("UNISWAP_API_KEY is not set");
   if (!PRIVATE_KEY) throw new Error("PRIVATE_KEY is not set");
 
   const account = privateKeyToAccount(PRIVATE_KEY as `0x${string}`);
-  const publicClient = createPublicClient({ chain: base, transport: http() });
-  const walletClient = createWalletClient({
-    account,
-    chain: base,
+  const publicClient = createPublicClient({
+    chain: uniswapConfig.chain,
     transport: http(),
   });
-
-  const chainId = 8453; // Base network
+  const walletClient = createWalletClient({
+    account,
+    chain: uniswapConfig.chain,
+    transport: http(),
+  });
 
   const headers = {
     "x-api-key": API_KEY,
@@ -92,12 +89,12 @@ export async function executeSwap(
 
   // 1. Check approval
   const approvalRes = await axios.post(
-    `${API_URL}/check_approval`,
+    `${uniswapConfig.apiUrl}/check_approval`,
     {
       walletAddress: account.address,
       token: tokenIn,
       amount,
-      chainId,
+      chainId: uniswapConfig.chain.id,
     },
     { headers },
   );
@@ -112,9 +109,9 @@ export async function executeSwap(
       value: BigInt(approvalData.approval.value || "0"),
     });
     await publicClient.waitForTransactionReceipt({ hash });
-    console.log(`[Uniswap] Approval successful. Tx hash: ${hash}`);
+    console.log(`[Uniswap] Approval successful, transaction hash: ${hash}`);
   } else {
-    console.log(`[Uniswap] Token already approved.`);
+    console.log(`[Uniswap] Token already approved`);
   }
 
   // 2. Get quote
@@ -124,29 +121,33 @@ export async function executeSwap(
     swapper: account.address,
     tokenIn,
     tokenOut,
-    tokenInChainId: String(chainId),
-    tokenOutChainId: String(chainId),
+    tokenInChainId: String(uniswapConfig.chain.id),
+    tokenOutChainId: String(uniswapConfig.chain.id),
     amount,
     type: "EXACT_INPUT",
     slippageTolerance: 0.5,
   };
 
-  if (FEE_BPS !== undefined && !isNaN(FEE_BPS) && FEE_RECIPIENT) {
+  if (INTEGRATOR_FEE_BIPS && INTEGRATOR_FEE_RECIPIENT) {
     quoteParams.integratorFees = [
       {
-        bips: FEE_BPS,
-        recipient: FEE_RECIPIENT,
+        bips: parseInt(INTEGRATOR_FEE_BIPS),
+        recipient: INTEGRATOR_FEE_RECIPIENT,
       },
     ];
   }
 
-  const quoteRes = await axios.post(`${API_URL}/quote`, quoteParams, {
-    headers,
-  });
+  const quoteRes = await axios.post(
+    `${uniswapConfig.apiUrl}/quote`,
+    quoteParams,
+    {
+      headers,
+    },
+  );
 
   const quoteResponse = quoteRes.data;
   console.log(
-    `[Uniswap] Received quote successfully (routing: ${quoteResponse.routing}).`,
+    `[Uniswap] Received quote successfully, routing: ${quoteResponse.routing}`,
   );
 
   // Sign permitData if present
@@ -178,14 +179,18 @@ export async function executeSwap(
       primaryType,
       message: permitData.values,
     });
-    console.log(`[Uniswap] Signature generated successfully.`);
+    console.log(`[Uniswap] Signature generated successfully`);
   }
 
   // 3. Execute swap
   console.log(`[Uniswap] Submitting swap request to Trading API...`);
   const swapRequest = prepareSwapRequest(quoteResponse, signature);
 
-  const swapRes = await axios.post(`${API_URL}/swap`, swapRequest, { headers });
+  const swapRes = await axios.post(
+    `${uniswapConfig.apiUrl}/swap`,
+    swapRequest,
+    { headers },
+  );
   const swapData = swapRes.data;
 
   // 4. Validate before broadcasting
@@ -202,7 +207,7 @@ export async function executeSwap(
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
 
   console.log(
-    `[Uniswap] Swap transaction confirmed! Tx hash: ${receipt.transactionHash}`,
+    `[Uniswap] Swap transaction confirmed, transaction hash: ${receipt.transactionHash}`,
   );
 
   return receipt.transactionHash;

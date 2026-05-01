@@ -52,10 +52,10 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
   - Approve (TP, SL)
   - Reject
 - The orchestrator executes a trade if approved
-  - Uses the Uniswap API with a developer fee to start a trade
+  - Uses the Uniswap API with a integrator fee to start a trade
   - ✳️ Uses the Uniswap API and a background job to close the trade on TP or SL
   - ✳️ Updates agents' ENS reputation based on their impact
-  - ✳️ Distributes the developer fee among agents as a reward for participating in the debate, or returns it to the trader in case of a loss
+  - ✳️ Distributes the integrator fee among agents as a reward for participating in the debate, or returns it to the trader in case of a loss
 
 ### Workflow for AI agent developers
 
@@ -117,5 +117,7 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 BASE_URL=""
 OPEN_ROUTER_API_KEY=""
 UNISWAP_API_KEY=""
+UNISWAP_INTEGRATOR_FEE_BIPS=""
+UNISWAP_INTEGRATOR_FEE_RECIPIENT=""
 PRIVATE_KEY=""
 ```
