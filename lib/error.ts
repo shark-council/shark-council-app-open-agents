@@ -6,7 +6,7 @@ export function handleError(args: {
   toastTitle?: string;
   toastMessage?: string;
 }) {
-  console.log("[Error Lib] Handling error...");
+  console.log("[Error] Handling error...");
   console.error(args.error);
   toast.error(args.toastTitle || "Something went wrong", {
     description: args.toastMessage || getErrorString(args.error),
