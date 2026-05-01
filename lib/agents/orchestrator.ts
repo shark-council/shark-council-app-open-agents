@@ -166,7 +166,7 @@ function buildVerdictPrompt(topic: string, history: DebateEntry[]): string {
 - Format the verdict into 2 short paragraphs with a blank line between them.
 - If the debate supports waiting instead of acting, still provide the best tentative trade setup rather than leaving fields blank.
 - Be authoritative. No hedging.
-- CRITICAL: At the very end of your verdict, you MUST add a suggested trade on a new line starting with "Suggested Trade: ". For example: "Suggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet."
+- CRITICAL: At the very end of your verdict, you MUST add a suggested trade on a new line starting with "Suggested Trade: ". The suggested swap left side MUST always be 0.01 USDC. For example: "Suggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet."
 
 # Debate topic
 
@@ -318,6 +318,37 @@ async function* handleDebate(topic: string): AsyncGenerator<string> {
     type: "final",
     content: verdict,
   })}\n\n`;
+
+  const suggestedTradeMatch = verdict.match(/Suggested Trade:\s*(.*)/i);
+
+  if (suggestedTradeMatch && suggestedTradeMatch[1]) {
+    const executionInstruction = suggestedTradeMatch[1];
+    
+    yield `data: ${JSON.stringify({
+      role: "orchestrator",
+      type: "thinking",
+      content: "Executing suggested trade...",
+    })}\n\n`;
+    
+    await delay(THINKING_DELAY_MS);
+
+    try {
+      const executionResponse = await callExecutorAgent(executionInstruction);
+      
+      yield `data: ${JSON.stringify({
+        role: "orchestrator",
+        type: "final",
+        content: executionResponse,
+      })}\n\n`;
+    } catch (e: unknown) {
+      const errorMessage = e instanceof Error ? e.message : String(e);
+      yield `data: ${JSON.stringify({
+        role: "orchestrator",
+        type: "final",
+        content: `Execution failed: ${errorMessage}`,
+      })}\n\n`;
+    }
+  }
 
   yield `data: [DONE]\n\n`;
 }
