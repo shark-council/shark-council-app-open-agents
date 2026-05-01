@@ -337,7 +337,7 @@ async function* handleExecution(execution: string): AsyncGenerator<string> {
     yield `data: ${JSON.stringify({
       role: "orchestrator",
       type: "final",
-      content: `Execution completed.\n\nDetails:\n${response}`,
+      content: response,
     })}\n\n`;
   } catch (e: unknown) {
     const errorMessage = e instanceof Error ? e.message : String(e);
