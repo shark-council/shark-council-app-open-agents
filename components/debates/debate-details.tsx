@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ClassValue } from "clsx";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
-import { BotIcon, ChartCandlestickIcon } from "lucide-react";
+import { BotIcon, ChartCandlestickIcon, RefreshCcw } from "lucide-react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { agentConfig } from "@/config/agent";
 import Link from "next/link";
@@ -13,6 +13,22 @@ import { Button } from "../ui/button";
 export function DebateDetails(props: { className?: ClassValue }) {
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
+      <Card>
+        <CardHeader className="border-b">
+          <CardTitle>
+            <ChartCandlestickIcon className="size-4 mb-1 mr-1 inline" />
+            Chart
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="relative w-full pb-[125%] min-[1400px]:pb-[65%]">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full border-0 rounded-xl"
+              src="https://dexscreener.com/base/0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef?embed=1&loadChartSettings=0&trades=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"
+            ></iframe>
+          </div>
+        </CardContent>
+      </Card>
       <Card>
         <CardHeader className="border-b">
           <CardTitle>
@@ -63,8 +79,7 @@ export function DebateDetails(props: { className?: ClassValue }) {
       <Card>
         <CardHeader className="border-b">
           <CardTitle>
-            <ChartCandlestickIcon className="size-4 mb-1 mr-1 inline" /> Uniswap
-            trade
+            <RefreshCcw className="size-4 mb-1 mr-1 inline" /> Uniswap trade
           </CardTitle>
         </CardHeader>
         <CardContent>
