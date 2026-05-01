@@ -116,5 +116,6 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 ```shell
 BASE_URL=""
 OPEN_ROUTER_API_KEY=""
+UNISWAP_API_KEY=""
 PRIVATE_KEY=""
 ```
