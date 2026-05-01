@@ -2,7 +2,7 @@ import { ChatOpenAI } from "@langchain/openai";
 import { BaseMessage, createAgent, tool } from "langchain";
 import z from "zod";
 import { getErrorString } from "../error";
-import { getWalletAddress } from "../wallet";
+import { getAccountWalletAddress } from "../account";
 
 const model = new ChatOpenAI({
   model: "google/gemini-3-flash-preview",
@@ -18,7 +18,7 @@ const getWalletAddressTool = tool(
     try {
       console.log(`[Executor] Getting wallet address...`);
 
-      return getWalletAddress();
+      return getAccountWalletAddress();
     } catch (error) {
       console.error(
         `[Executor] Getting wallet address failed, error: ${getErrorString(error)}`,

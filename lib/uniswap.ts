@@ -8,7 +8,7 @@ import {
   isHex,
   type Address,
 } from "viem";
-import { privateKeyToAccount } from "viem/accounts";
+import { getAccount } from "./account";
 
 // Helper to prepare swap request body
 function prepareSwapRequest(
@@ -61,14 +61,14 @@ export async function executeSwap(
   amount: string,
 ): Promise<`0x${string}`> {
   const API_KEY = process.env.UNISWAP_API_KEY;
-  const PRIVATE_KEY = process.env.PRIVATE_KEY;
   const INTEGRATOR_FEE_BIPS = process.env.UNISWAP_INTEGRATOR_FEE_BIPS;
   const INTEGRATOR_FEE_RECIPIENT = process.env.UNISWAP_INTEGRATOR_FEE_RECIPIENT;
 
-  if (!API_KEY) throw new Error("UNISWAP_API_KEY is not set");
-  if (!PRIVATE_KEY) throw new Error("PRIVATE_KEY is not set");
+  if (!API_KEY) {
+    throw new Error("UNISWAP_API_KEY is not set");
+  }
 
-  const account = privateKeyToAccount(PRIVATE_KEY as `0x${string}`);
+  const account = getAccount();
   const publicClient = createPublicClient({
     chain: uniswapConfig.chain,
     transport: http(),
