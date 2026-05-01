@@ -166,7 +166,7 @@ function buildVerdictPrompt(topic: string, history: DebateEntry[]): string {
 - Format the verdict into 2 short paragraphs with a blank line between them.
 - If the debate supports waiting instead of acting, still provide the best tentative trade setup rather than leaving fields blank.
 - Be authoritative. No hedging.
-- CRITICAL: At the very end of your verdict, you MUST add a suggested trade on a new line starting with "Suggested Trade: ". The suggested swap left side MUST always be 0.01 USDC. For example: "Suggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet."
+- CRITICAL: At the very end of your verdict, you MUST add a suggested trade on a new line starting with "Suggested Trade: ". The suggested swap left side MUST always be 0.01 USDC. You MUST also provide a take profit percentage and a stop loss percentage. For example: "Suggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet. Take profit: 5%, Stop loss: 2%."
 
 # Debate topic
 
