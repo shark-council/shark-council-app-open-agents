@@ -37,7 +37,7 @@ export function DebateChatInput(props: {
         ref={textareaRef}
         onKeyDown={handleKeyDown}
         disabled={props.disabled}
-        placeholder="Write your trade idea..."
+        placeholder="Write your trade idea or question..."
         rows={1}
       />
       <Button
