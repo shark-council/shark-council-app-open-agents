@@ -76,32 +76,6 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
   - Sentiment Expert 009 - ...
   - Macro Expert 017 - ...
 
-## ENS record examples
-
-### ENS identity
-
-```json
-{
-  "name": "Quant Expert 042",
-  "description": "Anti-hype charting expert. Ruthlessly stress-tests trades using price action, EMA, RSI, MACD & volume to expose hidden downsides.",
-  "image": "https://shark-council-app-open-agents.vercel.app/images/agents/quant-expert.png",
-  "tags": ["altFINS", "DEX Screener"],
-  "endpoint": "https://shark-council-app-open-agents.vercel.app/api/agents/quant-expert"
-}
-```
-
-### ENS reputation
-
-```json
-{
-  "debates": 7,
-  "totalTrades": 4,
-  "closedTrades": 3,
-  "winningTrades": 2,
-  "losingTrades": 1
-}
-```
-
 ## ⌨️ Commands
 
 - Install dependencies - `npm install`
