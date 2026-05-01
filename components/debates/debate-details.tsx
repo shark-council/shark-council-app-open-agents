@@ -29,7 +29,7 @@ export function DebateDetails(props: { className?: ClassValue }) {
       </Card>
       <Card>
         <CardHeader className="border-b">
-          <CardTitle>Trade</CardTitle>
+          <CardTitle>Uniswap trade</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
