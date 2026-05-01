@@ -14,5 +14,10 @@ export const uniswapConfig = {
       decimals: 8,
       address: "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
     },
+    eth: {
+      symbol: "WETH",
+      decimals: 18,
+      address: "0x4200000000000000000000000000000000000006",
+    },
   },
 } as const;

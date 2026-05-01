@@ -9,14 +9,17 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { DebateChatMessage as DebateChatMessageType } from "@/types/debate";
+import {
+  Debate,
+  DebateChatMessage as DebateChatMessageType,
+} from "@/types/debate";
 import { ClassValue } from "clsx";
+import { MessageCircleIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { DebateChatInput } from "./debate-chat-input";
 import { DebateChatMessage } from "./debate-chat-message";
-import { MessageCircleIcon } from "lucide-react";
 
-export function DebateChat(props: { className?: ClassValue }) {
+export function DebateChat(props: { debate: Debate; className?: ClassValue }) {
   const [messages, setMessages] = useState<DebateChatMessageType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);

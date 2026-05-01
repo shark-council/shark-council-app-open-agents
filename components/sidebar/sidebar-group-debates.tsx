@@ -6,23 +6,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { debateConfig } from "@/config/debate";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
-const debates = [
-  {
-    name: "Should I buy BTC if Powell gives a clear dovish signal today, considering the massive $464B open interest?",
-    url: "/debates/69f301d4affcda2138291a77",
-  },
-  {
-    name: "Does it make sense to sell Bitcoin if the FOMC delivers a hawkish surprise alongside the 3.75% rate hold?",
-    url: "/debates/69f301dcbc8553bd11810a4f",
-  },
-  {
-    name: "Is now a good time to buy BTC, betting that the 3.75% rate hold brings a dovish transition speech?",
-    url: "/debates/69f301e28eff03239496e370",
-  },
-];
+const debates = [debateConfig.demoDebate1, debateConfig.demoDebate2];
 
 export function SidebarGroupDebates() {
   return (
@@ -37,8 +25,8 @@ export function SidebarGroupDebates() {
         {debates.map((debate, index) => (
           <SidebarMenuItem key={index}>
             <SidebarMenuButton asChild>
-              <Link href={debate.url}>
-                <span>{debate.name}</span>
+              <Link href={`/debates/${debate.id}`}>
+                <span>{debate.idea}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

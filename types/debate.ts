@@ -1,3 +1,12 @@
+import { Agent } from "./agent";
+
+export type Debate = {
+  id: string;
+  idea: string;
+  agents: Agent[];
+  dexScreenerUrl: string;
+};
+
 export type DebateChatMessageRole =
   | "user"
   | "orchestrator"
