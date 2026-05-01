@@ -2,7 +2,11 @@ import { uniswapConfig } from "@/config/uniswap";
 import { ChatOpenAI } from "@langchain/openai";
 import { BaseMessage, createAgent, tool } from "langchain";
 import z from "zod";
-import { getAccountWalletAddress } from "../account";
+import {
+  getWalletAddress,
+  getWalletNativeBalance,
+  getWalletTokenBalance,
+} from "../wallet";
 import { getErrorString } from "../error";
 import { executeSwap } from "../uniswap";
 
@@ -19,8 +23,7 @@ const getWalletAddressTool = tool(
   async ({}) => {
     try {
       console.log(`[Executor] Getting wallet address...`);
-
-      return getAccountWalletAddress();
+      return getWalletAddress();
     } catch (error) {
       console.error(
         `[Executor] Getting wallet address failed, error: ${getErrorString(error)}`,
@@ -33,6 +36,65 @@ const getWalletAddressTool = tool(
     name: "get_wallet_address",
     description: "Get the wallet address.",
     schema: z.object({}),
+  },
+);
+
+const getWalletNativeBalanceTool = tool(
+  async ({ chainId }) => {
+    try {
+      console.log(
+        `[Executor] Getting wallet native balance for chain ${chainId}...`,
+      );
+      const balance = await getWalletNativeBalance(chainId);
+      return `Wallet native balance on chain ${chainId}: ${balance}`;
+    } catch (error) {
+      console.error(
+        `[Executor] Getting wallet native balance failed, error: ${getErrorString(error)}`,
+        error,
+      );
+      return `Failed to get wallet native balance: ${getErrorString(error)}`;
+    }
+  },
+  {
+    name: "get_wallet_native_balance",
+    description:
+      "Get the wallet native token balance of the agent's wallet for a given chainId.",
+    schema: z.object({
+      chainId: z
+        .number()
+        .describe("The ID of the blockchain network (e.g., 8453 for Base)"),
+    }),
+  },
+);
+
+const getWalletTokenBalanceTool = tool(
+  async ({ chainId, tokenAddress }) => {
+    try {
+      console.log(
+        `[Executor] Getting wallet token balance for ${tokenAddress} on chain ${chainId}...`,
+      );
+      const balance = await getWalletTokenBalance(chainId, tokenAddress);
+      return `Wallet token balance for ${tokenAddress} on chain ${chainId}: ${balance}`;
+    } catch (error) {
+      console.error(
+        `[Executor] Getting wallet token balance failed, error: ${getErrorString(error)}`,
+        error,
+      );
+      return `Failed to get wallet token balance: ${getErrorString(error)}`;
+    }
+  },
+  {
+    name: "get_wallet_token_balance",
+    description:
+      "Get the wallet ERC20 token balance of the agent's wallet for a given chainId and tokenAddress.",
+    schema: z.object({
+      chainId: z
+        .number()
+        .describe("The ID of the blockchain network (e.g., 8453 for Base)"),
+      tokenAddress: z
+        .string()
+        .describe("The address of the ERC20 token contract"),
+    }),
   },
 );
 
@@ -119,6 +181,8 @@ const systemPrompt = `
 # Tools
 
 - \`get_wallet_address\`: Get the wallet address.
+- \`get_native_balance\`: Get the native token balance of the agent's wallet for a given chainId.
+- \`get_token_balance\`: Get the ERC20 token balance of the agent's wallet for a given chainId and tokenAddress.
 - \`get_uniswap_swap_chain\`: Get the Uniswap swap chain details.
 - \`get_uniswap_swap_tokens\`: Get the Uniswap swap tokens.
 - \`execute_uniswap_swap\`: Execute a token swap on Uniswap (Requires tokenIn, tokenOut, and amount in wei).
@@ -135,6 +199,8 @@ const agent = createAgent({
     getWalletAddressTool,
     getUniswapSwapChainTool,
     getUniswapSwapTokensTool,
+    getWalletNativeBalanceTool,
+    getWalletTokenBalanceTool,
     executeUniswapSwapTool,
   ],
   systemPrompt,

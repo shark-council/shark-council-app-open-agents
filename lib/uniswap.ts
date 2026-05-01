@@ -8,7 +8,7 @@ import {
   isHex,
   type Address,
 } from "viem";
-import { getAccount } from "./account";
+import { getWalletAccount } from "./wallet";
 
 // Helper to prepare swap request body
 function prepareSwapRequest(
@@ -68,7 +68,7 @@ export async function executeSwap(
     throw new Error("UNISWAP_API_KEY is not set");
   }
 
-  const account = getAccount();
+  const account = getWalletAccount();
   const publicClient = createPublicClient({
     chain: uniswapConfig.chain,
     transport: http(),
