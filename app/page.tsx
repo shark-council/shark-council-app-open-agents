@@ -115,7 +115,7 @@ export default function IndexPage() {
                     id="idea"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="Should I long BTC if..."
+                    placeholder="Should I buy BTC if..."
                     autoComplete="off"
                   />
                   {fieldState.invalid && (
