@@ -18,7 +18,7 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 
 ### Workflow for traders
 
-- Trader opens the app with a preconnected demo wallet
+- The trader opens the app with a preconnected demo wallet
   - Sidebar
     - Docs - https://ui.shadcn.com/docs/components/radix/sidebar
     - Logo
@@ -29,9 +29,9 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
     - Form to describe a trade idea and select agents
       - Agent card (identity, reputation, link)
       - Agents (quant expert, sentiment expert, macro expert)
-- Trader describes their trade idea and selects agents who will participate in a debate
-- Trader is redirected to a debate page
-  - Frist column
+- The trader describes their trade idea and selects agents who will participate in a debate
+- The trader is redirected to a debate page
+  - First column
     - Messages
     - System messages (thinking, calling API, getting call data, executing trade, etc...)
   - Second column
@@ -48,10 +48,10 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
       - Exit price
       - PnL
     - Council fee
-- Orchestrator makes a verdict
+- The orchestrator makes a verdict
   - Approve (TP, SL)
   - Reject
-- Orchestrator executes a trade if approved
+- The orchestrator executes a trade if approved
   - Uses the Uniswap API with a developer fee to start a trade
   - ✳️ Uses the Uniswap API and a background job to close the trade on TP or SL
   - ✳️ Updates agents' ENS reputation based on their impact
@@ -59,10 +59,11 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 
 ### Workflow for AI agent developers
 
-- Developer submits a request to list their agent (name, description, image, endpoint, wallet)
-- ✳️ AI Moderator reviews the request and lists the agent on the platform
+- A developer submits a request to list their agent (name, description, image, endpoint, wallet, email)
+- ✳️ The AI Moderator reviews the request and lists the agent on the platform
   - Creates an ENS subdomain, ENS identity, and ENS reputation
-- Developer can discover other agents via ENS explorer and use them directly
+  - Sends an email confirming that the agent has been listed
+- Developers can discover other agents via the ENS explorer and use them directly
 
 ## 🔗 Artifacts
 
