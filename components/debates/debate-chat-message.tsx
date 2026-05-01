@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { agentConfig } from "@/config/agent";
 import { cn } from "@/lib/utils";
 import {
   DebateChatMessageRole,
@@ -12,15 +13,15 @@ import remarkGfm from "remark-gfm";
 const ROLE_LABELS: Record<DebateChatMessageRole, string> = {
   user: "You",
   orchestrator: "Orchestrator",
-  "sentiment-expert": "Sentiment Expert 009",
-  "quant-expert": "Quant Expert 042",
+  "sentiment-expert": agentConfig.sentimentExpert009.identity.name,
+  "quant-expert": agentConfig.quantExpert042.identity.name,
 };
 
 const ROLE_AVATARS: Record<DebateChatMessageRole, string | null> = {
   user: null,
   orchestrator: "/images/agents/orchestrator.png",
-  "sentiment-expert": "/images/agents/sentiment-expert.png",
-  "quant-expert": "/images/agents/quant-expert.png",
+  "sentiment-expert": agentConfig.sentimentExpert009.identity.image,
+  "quant-expert": agentConfig.quantExpert042.identity.image,
 };
 
 const ROLE_BADGE_STYLES: Record<DebateChatMessageRole, string> = {

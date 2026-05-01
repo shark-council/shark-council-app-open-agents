@@ -14,6 +14,7 @@ import { ClassValue } from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { DebateChatInput } from "./debate-chat-input";
 import { DebateChatMessage } from "./debate-chat-message";
+import { MessageCircleIcon } from "lucide-react";
 
 export function DebateChat(props: { className?: ClassValue }) {
   const [messages, setMessages] = useState<DebateChatMessageType[]>([]);
@@ -105,7 +106,9 @@ export function DebateChat(props: { className?: ClassValue }) {
     <Card className={cn(props.className)}>
       {/* Header */}
       <CardHeader className="border-b">
-        <CardTitle>Chat</CardTitle>
+        <CardTitle>
+          <MessageCircleIcon className="size-4 mb-1 mr-1 inline" /> Chat
+        </CardTitle>
       </CardHeader>
       {/* Content */}
       <CardContent>

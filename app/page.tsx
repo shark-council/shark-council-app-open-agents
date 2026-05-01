@@ -29,6 +29,7 @@ import {
   TagsIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -181,7 +182,13 @@ export default function IndexPage() {
                           <FieldContent>
                             {/* Name */}
                             <FieldLabel htmlFor={agent.id}>
-                              {agent.identity.name}
+                              <p>{agent.identity.name}</p>
+                              <p>/</p>
+                              <Button variant="link" className="p-0" asChild>
+                                <Link href={agent.url} target="_blank">
+                                  {agent.id}
+                                </Link>
+                              </Button>
                             </FieldLabel>
                             {/* Description */}
                             <FieldDescription>

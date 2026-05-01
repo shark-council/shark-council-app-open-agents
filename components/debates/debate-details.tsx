@@ -3,66 +3,125 @@
 import { cn } from "@/lib/utils";
 import { ClassValue } from "clsx";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Separator } from "../ui/separator";
+import { BotIcon, ChartCandlestickIcon } from "lucide-react";
+import { Avatar, AvatarImage } from "../ui/avatar";
+import { agentConfig } from "@/config/agent";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 export function DebateDetails(props: { className?: ClassValue }) {
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
       <Card>
         <CardHeader className="border-b">
-          <CardTitle>Started</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>{new Date("2026-04-30T09:42:42Z").toLocaleString()}</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="border-b">
-          <CardTitle>Wallet</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>Address: NA</p>
-          <p>Balance: NA</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="border-b">
-          <CardTitle>ENS sharks</CardTitle>
+          <CardTitle>
+            <BotIcon className="size-4 mb-1 mr-1 inline" />
+            ENS sharks
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
-            <p>Sentiment Expert 009</p>
-            <p>Quant Expert 042</p>
-            <p>Integrator fee: NA</p>
+            <div className="flex flex-row items-center gap-2">
+              <Avatar size="sm">
+                <AvatarImage
+                  src={agentConfig.sentimentExpert009.identity.image}
+                  alt={agentConfig.sentimentExpert009.identity.name}
+                />
+              </Avatar>
+              <p>{agentConfig.sentimentExpert009.identity.name}</p>
+              <p>/</p>
+              <Button variant="link" className="p-0" asChild>
+                <Link href={agentConfig.sentimentExpert009.url} target="_blank">
+                  {agentConfig.sentimentExpert009.id}
+                </Link>
+              </Button>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <Avatar size="sm">
+                <AvatarImage
+                  src={agentConfig.quantExpert042.identity.image}
+                  alt={agentConfig.quantExpert042.identity.name}
+                />
+              </Avatar>
+              <p>{agentConfig.quantExpert042.identity.name}</p>
+              <p>/</p>
+              <Button variant="link" className="p-0" asChild>
+                <Link href={agentConfig.quantExpert042.url} target="_blank">
+                  {agentConfig.quantExpert042.id}
+                </Link>
+              </Button>
+            </div>
+            <Separator />
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Integrator fee:</p>
+              <p>NA</p>
+            </div>
           </div>
         </CardContent>
       </Card>
       <Card>
         <CardHeader className="border-b">
-          <CardTitle>Uniswap trade</CardTitle>
+          <CardTitle>
+            <ChartCandlestickIcon className="size-4 mb-1 mr-1 inline" /> Uniswap
+            trade
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
-            <p>Chain: NA</p>
-            <p>Token: NA</p>
-            <p>Status: NA</p>
-            <p>Entry date: NA</p>
-            <p>Entry price: NA</p>
-            <p>Entry amount: NA</p>
-            <p>Entry transaction hash: NA</p>
-            <p>Exit date: NA</p>
-            <p>Exit price: NA</p>
-            <p>Exit amount: NA</p>
-            <p>Exit transaction hash: NA</p>
-            <p>PnL: NA</p>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Chain:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Token:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Status:</p>
+              <p>NA</p>
+            </div>
+            <Separator />
+            <p className="font-bold">Entry</p>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Chain:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Price:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Amount:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Transaction hash:</p>
+              <p>NA</p>
+            </div>
+            <Separator />
+            <p className="font-bold">Exit</p>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Date:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Price:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Amount:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Transaction hash:</p>
+              <p>NA</p>
+            </div>
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">PnL:</p>
+              <p>NA</p>
+            </div>
           </div>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="border-b">
-          <CardTitle>Chart</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>NA</p>
         </CardContent>
       </Card>
     </div>
