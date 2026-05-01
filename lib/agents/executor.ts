@@ -1,12 +1,8 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { BaseMessage, createAgent, tool } from "langchain";
-import { privateKeyToAccount } from "viem/accounts";
 import z from "zod";
 import { getErrorString } from "../error";
-
-const PRIVATE_KEY = process.env.PRIVATE_KEY as `0x${string}`;
-
-const account = privateKeyToAccount(PRIVATE_KEY);
+import { getWalletAddress } from "../wallet";
 
 const model = new ChatOpenAI({
   model: "google/gemini-3-flash-preview",
@@ -17,12 +13,12 @@ const model = new ChatOpenAI({
   temperature: 0,
 });
 
-const getWalletAddress = tool(
+const getWalletAddressTool = tool(
   async ({}) => {
     try {
       console.log(`[Executor] Getting wallet address...`);
 
-      return account.address;
+      return getWalletAddress();
     } catch (error) {
       console.error(
         `[Executor] Getting wallet address failed, error: ${getErrorString(error)}`,
@@ -54,7 +50,7 @@ const systemPrompt = `
 
 const agent = createAgent({
   model,
-  tools: [getWalletAddress],
+  tools: [getWalletAddressTool],
   systemPrompt,
 });
 
