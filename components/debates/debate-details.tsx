@@ -16,15 +16,15 @@ export function DebateDetails(props: { className?: ClassValue }) {
         </CardContent>
       </Card>
       <Card>
-        <Card>
-          <CardHeader className="border-b">
-            <CardTitle>Wallet</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Address: NA</p>
-            <p>Balance: NA</p>
-          </CardContent>
-        </Card>
+        <CardHeader className="border-b">
+          <CardTitle>Wallet</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Address: NA</p>
+          <p>Balance: NA</p>
+        </CardContent>
+      </Card>
+      <Card>
         <Card></Card>
         <CardHeader className="border-b">
           <CardTitle>ENS sharks</CardTitle>
