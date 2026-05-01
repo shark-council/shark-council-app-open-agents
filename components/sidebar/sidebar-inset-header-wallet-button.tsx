@@ -1,6 +1,7 @@
 "use client";
 
 import { appConfig } from "@/config/app";
+import { formatAddress } from "@/lib/utils";
 import { GlobeIcon, LogOutIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback } from "../ui/avatar";
@@ -13,10 +14,6 @@ import {
 } from "../ui/dropdown-menu";
 
 export function SidebarInsetHeaderWalletButton() {
-  function formatAddress(address: string) {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  }
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, formatHash } from "@/lib/utils";
 import { Debate } from "@/types/debate";
 import { ClassValue } from "clsx";
 import { BotIcon, ChartCandlestickIcon, RefreshCcw } from "lucide-react";
@@ -16,6 +16,7 @@ export function DebateDetails(props: {
 }) {
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
+      {/* Chart */}
       <Card>
         <CardHeader className="border-b">
           <CardTitle>
@@ -32,7 +33,8 @@ export function DebateDetails(props: {
           </div>
         </CardContent>
       </Card>
-      <Card>
+      {/* ENS sharks */}
+      <Card className="border border-accent/40 bg-accent/5">
         <CardHeader className="border-b">
           <CardTitle>
             <BotIcon className="size-4 mb-1 mr-1 inline" />
@@ -58,15 +60,11 @@ export function DebateDetails(props: {
                 </Button>
               </div>
             ))}
-            <Separator />
-            <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Integrator fee:</p>
-              <p>NA</p>
-            </div>
           </div>
         </CardContent>
       </Card>
-      <Card>
+      {/* Uniswap trade */}
+      <Card className="border border-primary/40 bg-primary/5">
         <CardHeader className="border-b">
           <CardTitle>
             <RefreshCcw className="size-4 mb-1 mr-1 inline" /> Uniswap trade
@@ -74,57 +72,135 @@ export function DebateDetails(props: {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
+            {/* Chain */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Chain:</p>
-              <p>NA</p>
+              <p>{props.debate.uniswapTrade?.chain || "NA"}</p>
             </div>
-            <div className="flex flex-row gap-2">
+            {/* Token */}
+            <div className="flex flex-row items-center gap-2">
               <p className="text-muted-foreground">Token:</p>
-              <p>NA</p>
+              {props.debate.uniswapTrade ? (
+                <Button variant="link" className="h-auto p-0" asChild>
+                  <Link
+                    href={props.debate.uniswapTrade.tokenUrl}
+                    target="_blank"
+                  >
+                    {props.debate.uniswapTrade.tokenSymbol}
+                  </Link>
+                </Button>
+              ) : (
+                <p>NA</p>
+              )}
             </div>
+            {/* Status */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Status:</p>
-              <p>NA</p>
+              <p>{props.debate.uniswapTrade?.status || "NA"}</p>
             </div>
-            <Separator />
+            <Separator className="my-2" />
+            {/* Entry */}
             <p className="font-bold">Entry</p>
-            <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Chain:</p>
-              <p>NA</p>
-            </div>
-            <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Price:</p>
-              <p>NA</p>
-            </div>
-            <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Amount:</p>
-              <p>NA</p>
-            </div>
-            <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Transaction hash:</p>
-              <p>NA</p>
-            </div>
-            <Separator />
-            <p className="font-bold">Exit</p>
+            {/* Entry date */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Date:</p>
-              <p>NA</p>
+              <p>
+                {props.debate.uniswapTrade?.entry?.date.toLocaleString() ||
+                  "NA"}
+              </p>
             </div>
+            {/* Entry price */}
             <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Price:</p>
-              <p>NA</p>
+              <p className="text-muted-foreground">Price ($):</p>
+              <p>{props.debate.uniswapTrade?.entry?.tokenPrice || "NA"}</p>
             </div>
+            {/* Entry amount */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Amount:</p>
-              <p>NA</p>
+              <p>{props.debate.uniswapTrade?.entry?.tokenAmount || "NA"}</p>
             </div>
+            {/* Entry integrator fee amount */}
             <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">Transaction hash:</p>
-              <p>NA</p>
+              <p className="text-muted-foreground">Integrator fee amount:</p>
+              <p>
+                {props.debate.uniswapTrade?.entry?.integratorFeeTokenAmount ||
+                  "NA"}
+              </p>
             </div>
+            {/* Entry transaction */}
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-muted-foreground">Transaction:</p>
+              {props.debate.uniswapTrade?.entry ? (
+                <Button variant="link" className="h-auto p-0" asChild>
+                  <Link
+                    href={props.debate.uniswapTrade.entry.transactionUrl}
+                    target="_blank"
+                  >
+                    {formatHash(
+                      props.debate.uniswapTrade.entry.transactionHash,
+                    )}
+                  </Link>
+                </Button>
+              ) : (
+                <p>NA</p>
+              )}
+            </div>
+            <Separator className="my-2" />
+            {/* Exit */}
+            <p className="font-bold">Exit</p>
+            {/* Exit date */}
             <div className="flex flex-row gap-2">
-              <p className="text-muted-foreground">PnL:</p>
-              <p>NA</p>
+              <p className="text-muted-foreground">Date:</p>
+              <p>
+                {props.debate.uniswapTrade?.exit?.date.toLocaleString() || "NA"}
+              </p>
+            </div>
+            {/* Exit price */}
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Price ($):</p>
+              <p>{props.debate.uniswapTrade?.exit?.tokenPrice || "NA"}</p>
+            </div>
+            {/* Exit amount */}
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Amount:</p>
+              <p>{props.debate.uniswapTrade?.exit?.tokenAmount || "NA"}</p>
+            </div>
+            {/* Exit integrator fee amount */}
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Integrator fee amount:</p>
+              <p>
+                {props.debate.uniswapTrade?.exit?.integratorFeeTokenAmount ||
+                  "NA"}
+              </p>
+            </div>
+            {/* Exit transaction */}
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">Transaction:</p>
+              {props.debate.uniswapTrade?.exit ? (
+                <Button variant="link" className="h-auto p-0" asChild>
+                  <Link
+                    href={props.debate.uniswapTrade.exit.transactionUrl}
+                    target="_blank"
+                  >
+                    {formatHash(props.debate.uniswapTrade.exit.transactionHash)}
+                  </Link>
+                </Button>
+              ) : (
+                <p>NA</p>
+              )}
+            </div>
+            {/* Exit PnL */}
+            <div className="flex flex-row gap-2">
+              <p className="text-muted-foreground">PnL (%):</p>
+              {props.debate.uniswapTrade?.exit?.pnlPercentage ? (
+                <p>
+                  {props.debate.uniswapTrade.exit.pnlPercentage > 0
+                    ? `+${props.debate.uniswapTrade.exit.pnlPercentage}`
+                    : props.debate.uniswapTrade.exit.pnlPercentage}
+                </p>
+              ) : (
+                <p>NA</p>
+              )}
             </div>
           </div>
         </CardContent>

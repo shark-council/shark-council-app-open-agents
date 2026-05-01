@@ -7,6 +7,34 @@ const demoDebate1: Debate = {
   agents: [agentConfig.quantExpert042, agentConfig.sentimentExpert009],
   dexScreenerUrl:
     "https://dexscreener.com/base/0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef",
+  uniswapTrade: {
+    chain: "Base",
+    tokenSymbol: "cbBTC",
+    tokenUrl:
+      "https://basescan.org/token/0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
+    status: "Open",
+    entry: {
+      date: new Date("2026-05-01T14:30:00Z"),
+      tokenPrice: 78232.49,
+      tokenAmount: 0.00000012,
+      integratorFeeTokenAmount: 0.00000000012,
+      transactionHash:
+        "0xc56f6448ea2607699235eff30ca4da1ba9c45cfd5ff8ee112ce0bef1b143fdb4",
+      transactionUrl:
+        "https://basescan.org/tx/0xc56f6448ea2607699235eff30ca4da1ba9c45cfd5ff8ee112ce0bef1b143fdb4",
+    },
+    exit: {
+      date: new Date("2026-05-01T14:30:00Z"),
+      tokenPrice: 78232.49,
+      tokenAmount: 0.00000012,
+      integratorFeeTokenAmount: 0.00000000012,
+      transactionHash:
+        "0xc56f6448ea2607699235eff30ca4da1ba9c45cfd5ff8ee112ce0bef1b143fdb4",
+      transactionUrl:
+        "https://basescan.org/tx/0xc56f6448ea2607699235eff30ca4da1ba9c45cfd5ff8ee112ce0bef1b143fdb4",
+      pnlPercentage: 0.01,
+    },
+  },
 };
 
 const demoDebate2: Debate = {

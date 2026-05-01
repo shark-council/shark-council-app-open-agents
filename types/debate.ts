@@ -5,6 +5,29 @@ export type Debate = {
   idea: string;
   agents: Agent[];
   dexScreenerUrl: string;
+  uniswapTrade?: {
+    chain: string;
+    tokenSymbol: string;
+    tokenUrl: string;
+    status: "Open" | "Closed";
+    entry: {
+      date: Date;
+      tokenPrice: number;
+      tokenAmount: number;
+      integratorFeeTokenAmount: number;
+      transactionHash: string;
+      transactionUrl: string;
+    };
+    exit?: {
+      date: Date;
+      tokenPrice: number;
+      tokenAmount: number;
+      integratorFeeTokenAmount: number;
+      transactionHash: string;
+      transactionUrl: string;
+      pnlPercentage: number;
+    };
+  };
 };
 
 export type DebateChatMessageRole =
