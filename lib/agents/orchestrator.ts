@@ -20,7 +20,6 @@ const BASE_URL = process.env.BASE_URL;
 const THINKING_DELAY_MS = 2200;
 const MESSAGE_DELAY_MS = 1400;
 
-// TODO: Uncomment the additional debate rounds
 const DEBATE_ROUNDS: DebateRound[] = [
   {
     agent: "sentiment-expert",
@@ -34,18 +33,18 @@ const DEBATE_ROUNDS: DebateRound[] = [
     instruction:
       "Respond to Sentiment Expert directly. What does the chart say? Challenge their specific claims.",
   },
-  // {
-  //   agent: "sentiment-expert",
-  //   thinkingLabel: "Sentiment Expert is firing back...",
-  //   instruction:
-  //     "Push back on Quant Expert's specific technical arguments. Why are they missing the bigger picture?",
-  // },
-  // {
-  //   agent: "quant-expert",
-  //   thinkingLabel: "Quant Expert is checking the data one more time...",
-  //   instruction:
-  //     "Final word. Stand your ground or concede specific points — but be clear about the risk here.",
-  // },
+  {
+    agent: "sentiment-expert",
+    thinkingLabel: "Sentiment Expert is firing back...",
+    instruction:
+      "Push back on Quant Expert's specific technical arguments. Why are they missing the bigger picture?",
+  },
+  {
+    agent: "quant-expert",
+    thinkingLabel: "Quant Expert is checking the data one more time...",
+    instruction:
+      "Final word. Stand your ground or concede specific points — but be clear about the risk here.",
+  },
 ];
 
 const model = new ChatOpenAI({
@@ -323,18 +322,18 @@ async function* handleDebate(topic: string): AsyncGenerator<string> {
 
   if (suggestedTradeMatch && suggestedTradeMatch[1]) {
     const executionInstruction = suggestedTradeMatch[1];
-    
+
     yield `data: ${JSON.stringify({
       role: "orchestrator",
       type: "thinking",
       content: "Executing suggested trade...",
     })}\n\n`;
-    
+
     await delay(THINKING_DELAY_MS);
 
     try {
       const executionResponse = await callExecutorAgent(executionInstruction);
-      
+
       yield `data: ${JSON.stringify({
         role: "orchestrator",
         type: "final",
