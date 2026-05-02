@@ -12,65 +12,54 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 
 <!-- TODO: Fill in -->
 
+<!-- ENS protocol is used as a discovery, identity, and reputation layer -->
+
 ...
 
 ## 🌊 Workflow
 
 ### Workflow for traders
 
-- The trader opens the app with a preconnected demo wallet
-  - Sidebar
-    - Docs - https://ui.shadcn.com/docs/components/radix/sidebar
-    - Logo
-    - Menu items
-    - List of debates (active, completed)
-  - One column
-    - Hero
-    - Form to describe a trade idea and select agents
-      - Agent card (identity, reputation, link)
-      - Agents (quant expert, sentiment expert, macro expert)
-- The trader describes their trade idea and selects agents who will participate in a debate
-- The trader is redirected to a debate page
-  - First column
-    - Messages
-    - System messages (thinking, calling API, getting call data, executing trade, etc...)
-  - Second column
-    - Example - https://app.uniswap.org/explore/tokens/ethereum/NATIVE
-    - Agents
-    - Created date
-    - Completed date
-    - Status (active, completed)
-    - Token
-    - Chart
-    - Trade
-      - Status (active, completed, win, loss)
-      - Entry price
-      - Exit price
-      - PnL
-    - Council fee
-- The orchestrator makes a verdict
-  - Approve (TP, SL)
-  - Reject
-- The orchestrator executes a trade if approved
-  - Uses the Uniswap API with a integrator fee to start a trade
-  - ✳️ Uses the Uniswap API and a background job to close the trade on TP or SL
-  - ✳️ Updates agents' ENS reputation based on their impact
-  - ✳️ Distributes the integrator fee among agents as a reward for participating in the debate, or returns it to the trader in case of a loss
+- Trader opens the app
+- Trader describes their trade idea and selects agents who will participate in a debate
+  - Each agent has an ENS subdomain, e.g. quant-expert-042.sharkcouncil.eth
+  - Each agent has an ENS identity, including a name, description, and tags related to the agent's tools and data sources
+  - Each agent has an ENS reputation, including the number of debates, trades, winning trades, losing trades, etc.
+- Trader is redirected to a debate page
+  - The debate page includes a chat where the selected agents, managed by the orchestrator, debate the trade idea
+  - The debate page includes details such as a chart, a list of participating agents, and information about the trade entry, close, and PnL
+- Orchestrator analyzes the conversation between selected agents and makes a verdict
+  - An approval verdict is issued if the trade should be started; this verdict includes take-profit and stop-loss targets
+  - A rejection verdict is issued if the trade should not be started yet
+- Orchestrator starts a trade if approved
+  - The orchestrator uses a preconnected demo wallet
+  - The orchestrator uses the Uniswap API with an integrator fee to execute the trade entry
+  - The orchestrator starts a background job that will close the trade when the take-profit or stop-loss target is reached
+- Orchestrator closes the trade when the background job is triggered by the take-profit or stop-loss target
+  - The orchestrator uses the Uniswap API with an integrator fee to execute the trade close
+  - The orchestrator updates the agents' ENS reputations based on the trade PnL
+  - The orchestrator distributes the earned integrator fee among the agents if the PnL is positive; otherwise, it returns it to the trader
 
 ### Workflow for AI agent developers
 
-- A developer submits a request to list their agent (name, description, image, endpoint, wallet, email)
-- ✳️ The AI Moderator reviews the request and lists the agent on the platform
-  - Creates an ENS subdomain, ENS identity, and ENS reputation
-  - Sends an email confirming that the agent has been listed
-- Developers can discover other agents via the ENS explorer and use them directly
+- Developer opens the app
+- Developer submits a request to list their agent, including its name, description, image, endpoint, wallet for receiving an integrator fee share, and contact email
+- AI moderator reviews the request and lists the agent on the platform
+  - AI moderator creates an ENS subdomain, ENS identity, and ENS reputation
+  - AI moderator sends an email to the developer confirming that their agent has been listed
+- Developer earns an integrator fee when their agent is selected by users and executes a trade with positive PnL
+
+### Workflow for application developers
+
+- Developer opens the parent ENS domain, sharkcouncil.eth, and explores the listed agents in the ENS explorer
+- Developer filters agents by their identity and reputation and integrates them into their application to use them directly without using Shark Council
 
 ## 🔗 Artifacts
 
 <!-- TODO: Fill in -->
 
 - App - https://shark-council-app-open-agents.vercel.app/
-- ENS primary domain - https://sepolia.app.ens.domains/sharkcouncil.eth
+- ENS parent domain - https://sepolia.app.ens.domains/sharkcouncil.eth
 - ENS sharks
   - Quant Expert 042 - https://sepolia.app.ens.domains/quant-expert-042.sharkcouncil.eth
   - Sentiment Expert 009 - ...
