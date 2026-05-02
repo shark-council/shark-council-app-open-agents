@@ -1,5 +1,20 @@
 import { Agent } from "./agent";
 
+export type DebateChatMessageRole =
+  | "user"
+  | "orchestrator"
+  | "sentiment-expert"
+  | "quant-expert";
+
+export type DebateChatMessageType = "thinking" | "message" | "final";
+
+export type DebateChatMessage = {
+  id: string;
+  role: DebateChatMessageRole;
+  type: DebateChatMessageType;
+  content: string;
+};
+
 // TODO: Add chat messages
 export type Debate = {
   id: string;
@@ -29,19 +44,4 @@ export type Debate = {
       pnlPercentage: number;
     };
   };
-};
-
-export type DebateChatMessageRole =
-  | "user"
-  | "orchestrator"
-  | "sentiment-expert"
-  | "quant-expert";
-
-export type DebateChatMessageType = "thinking" | "message" | "final";
-
-export type DebateChatMessage = {
-  id: string;
-  role: DebateChatMessageRole;
-  type: DebateChatMessageType;
-  content: string;
 };
