@@ -1,5 +1,6 @@
 import { Agent } from "./agent";
 
+// TODO: Add chat messages
 export type Debate = {
   id: string;
   idea: string;
