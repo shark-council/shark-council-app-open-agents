@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { agentConfig } from "@/config/agent";
 import { handleError } from "@/lib/error";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ObjectId } from "bson";
 import {
   BarChart3Icon,
   BotIcon,
@@ -58,14 +59,17 @@ export default function IndexPage() {
     },
   });
 
-  // TODO: Create a debate and pass the debate ID in the URL
+  // TODO: Implement actual submission logic
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleSubmit(data: z.infer<typeof formSchema>) {
     try {
       console.log("[Component] Submitting idea...");
       setIsSubmitting(true);
 
-      router.push("/debates/69f301e95ddf004b0f080b4d");
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      const id = new ObjectId();
+      router.push(`/debates/${id.toString()}`);
     } catch (error) {
       handleError({ error, toastTitle: "Failed to submit idea" });
       setIsSubmitting(false);
@@ -87,8 +91,9 @@ export default function IndexPage() {
         />
         {/* Title */}
         <h1 className="text-4xl font-extrabold tracking-tight text-balance text-center mt-8">
-          Let ENS sharks roast your trade ideas, then execute the winners using
-          Uniswap API
+          Let <span className="text-accent">ENS</span> sharks roast your trade
+          ideas, then execute the winners using{" "}
+          <span className="text-primary">Uniswap API</span>
         </h1>
         {/* Form */}
         <form
