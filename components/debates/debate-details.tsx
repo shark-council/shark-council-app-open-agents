@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, formatHash } from "@/lib/utils";
+import { cn, formatDecimal, formatHash } from "@/lib/utils";
 import { Debate } from "@/types/debate";
 import { ClassValue } from "clsx";
 import { BotIcon, ChartCandlestickIcon, RefreshCcw } from "lucide-react";
@@ -117,14 +117,22 @@ export function DebateDetails(props: {
             {/* Entry amount */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Amount:</p>
-              <p>{props.debate.uniswapTrade?.entry?.tokenAmount || "NA"}</p>
+              <p>
+                {props.debate.uniswapTrade?.entry?.tokenAmount != null
+                  ? formatDecimal(props.debate.uniswapTrade.entry.tokenAmount)
+                  : "NA"}
+              </p>
             </div>
             {/* Entry integrator fee amount */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Integrator fee amount:</p>
               <p>
-                {props.debate.uniswapTrade?.entry?.integratorFeeTokenAmount ||
-                  "NA"}
+                {props.debate.uniswapTrade?.entry?.integratorFeeTokenAmount !=
+                null
+                  ? formatDecimal(
+                      props.debate.uniswapTrade.entry.integratorFeeTokenAmount,
+                    )
+                  : "NA"}
               </p>
             </div>
             {/* Entry transaction */}
@@ -163,14 +171,22 @@ export function DebateDetails(props: {
             {/* Exit amount */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Amount:</p>
-              <p>{props.debate.uniswapTrade?.exit?.tokenAmount || "NA"}</p>
+              <p>
+                {props.debate.uniswapTrade?.exit?.tokenAmount != null
+                  ? formatDecimal(props.debate.uniswapTrade.exit.tokenAmount)
+                  : "NA"}
+              </p>
             </div>
             {/* Exit integrator fee amount */}
             <div className="flex flex-row gap-2">
               <p className="text-muted-foreground">Integrator fee amount:</p>
               <p>
-                {props.debate.uniswapTrade?.exit?.integratorFeeTokenAmount ||
-                  "NA"}
+                {props.debate.uniswapTrade?.exit?.integratorFeeTokenAmount !=
+                null
+                  ? formatDecimal(
+                      props.debate.uniswapTrade.exit.integratorFeeTokenAmount,
+                    )
+                  : "NA"}
               </p>
             </div>
             {/* Exit transaction */}

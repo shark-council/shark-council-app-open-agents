@@ -12,3 +12,12 @@ export function formatAddress(address: string) {
 export function formatHash(hash: string) {
   return `${hash.slice(0, 6)}...${hash.slice(-4)}`;
 }
+
+export function formatDecimal(value: number) {
+  const decimalFormatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 20,
+    useGrouping: false,
+  });
+
+  return decimalFormatter.format(value);
+}
