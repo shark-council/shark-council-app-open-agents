@@ -22,10 +22,9 @@ const quantExpert042: Agent = {
   },
 };
 
-// TODO: Provide the URL
 const sentimentExpert009: Agent = {
   id: "sentiment-expert-009",
-  url: "/",
+  url: "https://sepolia.app.ens.domains/sentiment-expert-009.sharkcouncil.eth",
   identity: {
     name: "Sentiment Expert 009",
     description:
@@ -45,10 +44,9 @@ const sentimentExpert009: Agent = {
   },
 };
 
-// TODO: Provide the URL
 const macroExpert017: Agent = {
   id: "macro-expert-017",
-  url: "/",
+  url: "https://sepolia.app.ens.domains/macro-expert-017.sharkcouncil.eth",
   identity: {
     name: "Macro Expert 017",
     description:

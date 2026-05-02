@@ -3,7 +3,7 @@ import { agentConfig } from "./agent";
 
 const demoDebate1: Debate = {
   id: "69f301d4affcda2138291a77",
-  idea: "Is it safe to long BTC right now considering yesterday's massive $629M institutional inflow?",
+  idea: "Is it safe to buy BTC right now considering yesterday's massive $629M institutional inflow?",
   agents: [agentConfig.quantExpert042, agentConfig.sentimentExpert009],
   dexScreenerUrl:
     "https://dexscreener.com/base/0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef",
@@ -13,6 +13,7 @@ const demoDebate1: Debate = {
     tokenUrl:
       "https://basescan.org/token/0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
     status: "Open",
+    // status: "Closed",
     entry: {
       date: new Date("2026-05-01T13:13:31Z"),
       tokenPrice: 78232.49,
@@ -23,17 +24,17 @@ const demoDebate1: Debate = {
       transactionUrl:
         "https://basescan.org/tx/0xc56f6448ea2607699235eff30ca4da1ba9c45cfd5ff8ee112ce0bef1b143fdb4",
     },
-    exit: {
-      date: new Date("2026-05-01T15:26:09Z"),
-      tokenPrice: 78365.48,
-      tokenAmount: 0.00000012,
-      integratorFeeTokenAmount: 0.00000000036,
-      transactionHash:
-        "0x0724e421383ee1936dae5563e24beaf88120d3e235466330881ea37209b33295",
-      transactionUrl:
-        "https://basescan.org/tx/0x0724e421383ee1936dae5563e24beaf88120d3e235466330881ea37209b33295",
-      pnlPercentage: 0.17,
-    },
+    // exit: {
+    //   date: new Date("2026-05-01T15:26:09Z"),
+    //   tokenPrice: 78365.48,
+    //   tokenAmount: 0.00000012,
+    //   integratorFeeTokenAmount: 0.00000000036,
+    //   transactionHash:
+    //     "0x0724e421383ee1936dae5563e24beaf88120d3e235466330881ea37209b33295",
+    //   transactionUrl:
+    //     "https://basescan.org/tx/0x0724e421383ee1936dae5563e24beaf88120d3e235466330881ea37209b33295",
+    //   pnlPercentage: 0.17,
+    // },
   },
 };
 
