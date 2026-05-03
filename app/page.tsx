@@ -54,8 +54,6 @@ export default function IndexPage() {
     },
   });
 
-  // TODO: Implement actual submission logic
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleSubmit(data: z.infer<typeof formSchema>) {
     try {
       console.log("[Component] Submitting idea...");
@@ -64,7 +62,15 @@ export default function IndexPage() {
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
       const id = new ObjectId();
-      router.push(`/debates/${id.toString()}`);
+
+      const params = new URLSearchParams({
+        idea: data.idea,
+      });
+      data.agents.forEach((agentId) => {
+        params.append("agent", agentId);
+      });
+
+      router.push(`/debates/${id.toString()}?${params.toString()}`);
     } catch (error) {
       handleError({ error, toastTitle: "Failed to submit idea" });
       setIsSubmitting(false);

@@ -1,35 +1,38 @@
 import { DebateChat } from "@/components/debates/debate-chat";
 import { DebateDetails } from "@/components/debates/debate-details";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Spinner } from "@/components/ui/spinner";
 import { debateConfig } from "@/config/debate";
 
 export default async function DebatePage({
   params,
+  searchParams,
 }: {
   params: Promise<{
     id: string;
   }>;
+  searchParams: Promise<{
+    idea?: string | string[];
+    agent?: string | string[];
+  }>;
 }) {
   const { id } = await params;
+  const { idea, agent } = await searchParams;
 
   let debate = debateConfig.demoDebates.find((debate) => debate.id === id);
   if (!debate) {
+    const debateIdea = Array.isArray(idea) ? (idea[0] ?? "") : (idea ?? "");
+    const debateAgentIds = Array.isArray(agent)
+      ? agent
+      : typeof agent === "string"
+        ? [agent]
+        : [];
+
     debate = {
       id: id,
-      idea: "",
-      agentIds: ["quant-expert-042", "sentiment-expert-009"],
+      idea: debateIdea,
+      agentIds: debateAgentIds,
       messages: [],
     };
-  }
-
-  if (!debate) {
-    return (
-      <main className="flex flex-1 flex-row items-center justify-center gap-2 px-4 py-4">
-        <Spinner />
-        <p>Loading...</p>
-      </main>
-    );
   }
 
   return (
