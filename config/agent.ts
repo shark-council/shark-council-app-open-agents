@@ -66,6 +66,7 @@ const macroExpert017: Agent = {
   },
 };
 
+// TODO: Delete this hardcoded config
 export const agentConfig = {
   quantExpert042,
   sentimentExpert009,
