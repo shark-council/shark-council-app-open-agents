@@ -12,7 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { handleError } from "@/lib/error";
+import { ApiResponse } from "@/types/api";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -21,13 +23,17 @@ import z from "zod";
 
 export default function AgentListingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const walletSchema = z
+    .string()
+    .trim()
+    .regex(/^0x[a-fA-F0-9]{40}$/, "Enter a valid wallet address");
 
   const formSchema = z.object({
     name: z.string().min(1, "Name is required"),
     description: z.string().min(1, "Description is required"),
     image: z.url("Enter a valid image URL"),
     endpoint: z.url("Enter a valid agent endpoint URL"),
-    wallet: z.string().min(1, "Wallet address is required"),
+    wallet: walletSchema,
     email: z.email("Enter a valid contact email"),
   });
 
@@ -43,21 +49,19 @@ export default function AgentListingPage() {
     },
   });
 
-  // TODO: Implement actual submission logic
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleSubmit(data: z.infer<typeof formSchema>) {
     try {
       console.log("[Component] Submitting agent listing request...");
       setIsSubmitting(true);
 
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await axios.post<ApiResponse>("/api/agents/listing", data);
 
       toast.success("Request submitted", {
         description: "You will receive an email when your agent is listed",
       });
       form.reset();
     } catch (error) {
-      handleError({ error, toastTitle: "Failed to prepare listing request" });
+      handleError({ error, toastTitle: "Failed to submit listing request" });
     } finally {
       setIsSubmitting(false);
     }
