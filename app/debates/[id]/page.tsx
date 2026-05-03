@@ -13,8 +13,15 @@ export default async function DebatePage({
 }) {
   const { id } = await params;
 
-  const debates = debateConfig.demoDebates;
-  const debate = debates.find((debate) => debate.id === id);
+  let debate = debateConfig.demoDebates.find((debate) => debate.id === id);
+  if (!debate) {
+    debate = {
+      id: id,
+      idea: "",
+      agentIds: ["quant-expert-042", "sentiment-expert-009"],
+      messages: [],
+    };
+  }
 
   if (!debate) {
     return (

@@ -10,8 +10,6 @@ import { debateConfig } from "@/config/debate";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
-const debates = debateConfig.demoDebates;
-
 export function SidebarGroupDebates() {
   return (
     <SidebarGroup>
@@ -22,7 +20,7 @@ export function SidebarGroupDebates() {
         </Link>
       </SidebarGroupAction>
       <SidebarMenu>
-        {debates.map((debate, index) => (
+        {debateConfig.demoDebates.map((debate, index) => (
           <SidebarMenuItem key={index}>
             <SidebarMenuButton asChild>
               <Link href={`/debates/${debate.id}`}>

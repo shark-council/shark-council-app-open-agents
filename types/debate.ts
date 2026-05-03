@@ -18,7 +18,7 @@ export type Debate = {
   idea: string;
   agentIds: string[];
   messages: DebateChatMessage[];
-  dexScreenerUrl: string;
+  dexScreenerUrl?: string;
   uniswapTrade?: {
     chain: string;
     tokenSymbol: string;
