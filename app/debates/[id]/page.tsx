@@ -38,7 +38,7 @@ export default async function DebatePage({
   return (
     <main className="flex flex-1 flex-row items-start gap-4 px-4 py-4">
       <ScrollArea className="flex-3 h-[calc(100dvh-4rem-2rem-1rem)]">
-        <DebateChat debate={debate} />
+        <DebateChat key={debate.id} debate={debate} />
       </ScrollArea>
       <ScrollArea className="flex-2 h-[calc(100dvh-4rem-2rem-1rem)]">
         <DebateDetails debate={debate} />
