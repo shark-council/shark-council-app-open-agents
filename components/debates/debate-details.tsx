@@ -1,18 +1,23 @@
 "use client";
 
+import { useEnsAgents } from "@/hooks/use-ens-agents";
 import { cn, formatDecimal, formatHash } from "@/lib/utils";
 import { Debate } from "@/types/debate";
 import { ClassValue } from "clsx";
 import { BotIcon, ChartCandlestickIcon, RefreshCcw } from "lucide-react";
 import Link from "next/link";
+import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
+import { Spinner } from "../ui/spinner";
 
 export function DebateDetails(props: {
   debate: Debate;
   className?: ClassValue;
 }) {
+  const { data: agents, isLoading } = useEnsAgents();
+
   return (
     <div className={cn("flex flex-col gap-3", props.className)}>
       {/* Chart */}
@@ -42,24 +47,38 @@ export function DebateDetails(props: {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
-            {props.debate.agentIds.map((agentId, index) => (
-              <p key={index}>{agentId}</p>
-              // <div className="flex flex-row items-center gap-2" key={index}>
-              //   <Avatar size="sm">
-              //     <AvatarImage
-              //       src={agent.identity.image}
-              //       alt={agent.identity.name}
-              //     />
-              //   </Avatar>
-              //   <p>{agent.identity.name}</p>
-              //   <p>/</p>
-              //   <Button variant="link" className="p-0" asChild>
-              //     <Link href={agent.url} target="_blank">
-              //       {agent.id}
-              //     </Link>
-              //   </Button>
-              // </div>
-            ))}
+            {isLoading ? (
+              <div className="flex items-center gap-2 p-2">
+                <Spinner />
+                <p className="text-sm text-muted-foreground">Loading...</p>
+              </div>
+            ) : (
+              props.debate.agentIds.map((agentId, index) => {
+                const agent = agents?.find((a) => a.id === agentId);
+
+                if (!agent) {
+                  return <p key={index}>{agentId}</p>;
+                }
+
+                return (
+                  <div className="flex flex-row items-center gap-2" key={index}>
+                    <Avatar size="sm">
+                      <AvatarImage
+                        src={agent.identity.image}
+                        alt={agent.identity.name}
+                      />
+                    </Avatar>
+                    <p className="text-sm font-medium">{agent.identity.name}</p>
+                    <p className="text-muted-foreground">/</p>
+                    <Button variant="link" className="h-auto p-0" asChild>
+                      <Link href={agent.url} target="_blank">
+                        {agent.id}
+                      </Link>
+                    </Button>
+                  </div>
+                );
+              })
+            )}
           </div>
         </CardContent>
       </Card>
