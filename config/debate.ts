@@ -74,7 +74,7 @@ const demoDebate1: Debate = {
       role: "orchestrator",
       type: "final",
       content:
-        'Quant Expert delivered the superior argument by highlighting the undeniable divergence between the $629M inflow and bleeding technical momentum. While sentiment remains optimistic, the MACD\'s sharp decline and the RSI rollover suggest that institutional demand is currently being absorbed by heavy distribution, marking this as a high-risk entry point.\n\nThe risk verdict is a tactical "Avoid" at current levels until a successful retest of the $73,848 support confirms a floor. Traders should wait for a technical reset but prepare a long position at the EMA50 to capture the next institutional leg up once the current exhaustion clears.\n\nSuggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet. Take profit: 8%, Stop loss: 4%.',
+        'Sentiment Expert made the stronger case by tying the $629M institutional inflow to a broader regime shift in adoption, while Quant Expert\'s caution never proved that momentum damage was strong enough to invalidate the bid. The technical setup is not clean, but the macro and institutional demand backdrop still favors a controlled long over standing aside.\n\nThe risk verdict is "Approve" with disciplined sizing and tight downside protection under support. Traders should take the entry now with a modest target and defined loss limits instead of waiting for a perfect reset that may never come.\n\nDecision: APPROVE\nSuggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet. Take profit: 6%, Stop loss: 3%.',
       id: "ed2cf7f1-19fd-4e6f-b8ef-fbe847b3fce6",
     },
     {
@@ -87,7 +87,7 @@ const demoDebate1: Debate = {
       role: "orchestrator",
       type: "final",
       content:
-        "I have successfully swapped 0.01 USDC for cbBTC (Bitcoin on Base) using the Uniswap protocol.\n\n**Transaction Details:**\n- **Amount Swapped:** 0.01 USDC (10,000 units)\n- **Token In:** USDC (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`)\n- **Token Out:** cbBTC (`0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf`)\n- **Network:** Base\n\n**Automated Strategy Set:**\n- **Take Profit:** 8%\n- **Stop Loss:** 4%\n\nI will monitor the price of cbBTC and execute the corresponding sell order once either of your targets is reached.",
+        "I have successfully swapped 0.01 USDC for cbBTC (Bitcoin on Base) using the Uniswap protocol.\n\n**Transaction Details:**\n- **Amount Swapped:** 0.01 USDC (10,000 units)\n- **Token In:** USDC (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`)\n- **Token Out:** cbBTC (`0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf`)\n- **Network:** Base\n\n**Automated Strategy Set:**\n- **Take Profit:** 6%\n- **Stop Loss:** 3%\n\nI will monitor the price of cbBTC and execute the corresponding sell order once either of your targets is reached.",
       id: "515821ac-1fb4-46ea-a844-f4bee7e1a9b6",
     },
   ],

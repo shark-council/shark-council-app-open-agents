@@ -120,6 +120,30 @@ function buildDebateTranscript(history: DebateEntry[]) {
   return transcript;
 }
 
+function parseVerdictOutcome(verdict: string): {
+  decision: "APPROVE" | "REJECT" | null;
+  executionInstruction?: string;
+} {
+  const decisionMatch = verdict.match(/^Decision:\s*(APPROVE|REJECT)\b/im);
+  const decision = decisionMatch?.[1]?.toUpperCase() as
+    | "APPROVE"
+    | "REJECT"
+    | undefined;
+
+  if (decision !== "APPROVE") {
+    return {
+      decision: decision ?? null,
+    };
+  }
+
+  const suggestedTradeMatch = verdict.match(/^Suggested Trade:\s*(.+)$/im);
+
+  return {
+    decision,
+    executionInstruction: suggestedTradeMatch?.[1]?.trim(),
+  };
+}
+
 function buildConversationTranscript(messages: BaseMessage[]): string {
   return messages
     .map((m) => {
@@ -163,9 +187,10 @@ function buildVerdictPrompt(topic: string, history: DebateEntry[]): string {
 - The verdict must explain who made the stronger case, what the risk verdict is, and what the trader should do.
 - Keep the verdict to 3-5 sentences.
 - Format the verdict into 2 short paragraphs with a blank line between them.
-- If the debate supports waiting instead of acting, still provide the best tentative trade setup rather than leaving fields blank.
 - Be authoritative. No hedging.
-- CRITICAL: At the very end of your verdict, you MUST add a suggested trade on a new line starting with "Suggested Trade: ". The suggested swap left side MUST always be 0.01 USDC. You MUST also provide a take profit percentage and a stop loss percentage. For example: "Suggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet. Take profit: 5%, Stop loss: 2%."
+- CRITICAL: At the very end of your verdict, you MUST add a new line starting with "Decision: " followed by either "APPROVE" or "REJECT".
+- ONLY if the decision is APPROVE, add one more new line starting with "Suggested Trade: ". The suggested swap left side MUST always be 0.01 USDC. You MUST also provide a take profit percentage and a stop loss percentage. For example: "Suggested Trade: Swap 0.01 USDC to BTC using a Demo Wallet. Take profit: 5%, Stop loss: 2%."
+- If the decision is REJECT, do not include a "Suggested Trade: " line.
 
 # Debate topic
 
@@ -318,11 +343,9 @@ async function* handleDebate(topic: string): AsyncGenerator<string> {
     content: verdict,
   })}\n\n`;
 
-  const suggestedTradeMatch = verdict.match(/Suggested Trade:\s*(.*)/i);
+  const { decision, executionInstruction } = parseVerdictOutcome(verdict);
 
-  if (suggestedTradeMatch && suggestedTradeMatch[1]) {
-    const executionInstruction = suggestedTradeMatch[1];
-
+  if (decision === "APPROVE" && executionInstruction) {
     yield `data: ${JSON.stringify({
       role: "orchestrator",
       type: "thinking",
