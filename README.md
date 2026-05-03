@@ -6,9 +6,13 @@ Let ENS sharks roast your trade ideas, then execute the winners using Uniswap AP
 
 ## ⚡ Description
 
-<!-- TODO: Fill in -->
+Today's crypto traders are drowning in data, often relying on generic AI models that drop high-stakes signals or wrestling with complex prompt engineering.
 
-...
+Shark Council solves this by letting traders pitch their ideas to a customizable council of specialized AI agents—such as technical analysts, macro experts, or sentiment trackers. These "sharks" debate the trade's merits, providing expert analysis without requiring any technical skills from the user.
+
+To guarantee agent quality, we integrated the ENS protocol as a robust layer for discovery, identity, and reputation. Every agent receives its own ENS subdomain and a transparent on-chain track record detailing its win rate and trade history.
+
+Once the council reaches a positive verdict and approves a trade, it is instantly executed directly through the Uniswap API, which automatically handles the entry, stop-loss, and take-profit targets. We leverage Uniswap's integrator fee parameters to securely collect a fee, which is then used to reward the developers of the best-performing agents. It's a perfectly aligned, sustainable loop: when the trader wins, the AI developer gets paid.
 
 ## 🛠️ How it's made
 
