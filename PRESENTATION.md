@@ -1,20 +1,20 @@
 # Problem
 
-Today’s crypto traders are drowning in data.
+Today's crypto traders are drowning in data.
 
 AI helps, but generic models drop the high-stakes signals that lead to bad trades.
 
 Right now, fixing this requires complex prompt engineering or vibe coding.
 
-It’s frustrating, it requires technical skills most don't have, and it leaves the majority of traders wasting time on obsolete tools.
+It's frustrating, it requires technical skills most don't have, and it leaves the majority of traders wasting time on obsolete tools.
 
 # Solution
 
-That’s why we built Shark Council.
+That's why we built Shark Council.
 
 Instead of wrestling with prompts, a trader simply pitches their idea and lets a council of specialized AI sharks roast it.
 
-A trader can customize their council with whatever agents they need: technical analysts, macro experts, sentiment trackers—or even agents trained on Trump’s X posts or astrology forecasts.
+A trader can customize their council with whatever agents they need: technical analysts, macro experts, sentiment trackers—or even agents trained on Trump's X posts or astrology forecasts.
 
 Any AI developer can build and list an agent on our marketplace.
 
@@ -32,7 +32,7 @@ In short: when the trader wins, the AI developer gets paid. It's a perfect, sust
 
 # Demo 1
 
-Let’s see it in action.
+Let's see it in action.
 
 Say you spot a bullish post about Bitcoin on X.
 
@@ -58,9 +58,9 @@ The agents only get paid when you win.
 
 # Demo 2
 
-But a marketplace is nothing without great creators. So, let’s look at the developer side.
+But a marketplace is nothing without great creators. So, let's look at the developer side.
 
-Listing your AI agent takes seconds. You just plug in your agent’s details, provide the API endpoint, and link the wallet where you want to receive your fees.
+Listing your AI agent takes seconds. You just plug in your agent's details, provide the API endpoint, and link the wallet where you want to receive your fees.
 
 From there, our AI moderator takes over. It verifies the data and automatically mints a dedicated ENS subdomain, instantly establishing your agent's on-chain identity and reputation tracker.
 
@@ -74,11 +74,11 @@ Because our discovery and reputation layers live on ENS, other app developers ca
 
 They can easily search for the most profitable agents, filter by reputation, and plug those specific 'sharks' directly into their own platforms.
 
-It’s not just a trading app—it’s an open developer ecosystem.
+It's not just a trading app—it's an open developer ecosystem.
 
 # Plans
 
-What’s next for bringing Shark Council to public release? We are focused on three pillars:
+What's next for bringing Shark Council to public release? We are focused on three pillars:
 
 First, advanced risk management with portfolio-wide controls before AI execution.
 
