@@ -13,7 +13,7 @@ export default async function DebatePage({
 }) {
   const { id } = await params;
 
-  const debates = [debateConfig.demoDebate1, debateConfig.demoDebate2];
+  const debates = [debateConfig.demoDebate1];
   const debate = debates.find((debate) => debate.id === id);
 
   if (!debate) {

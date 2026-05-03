@@ -10,7 +10,7 @@ import { debateConfig } from "@/config/debate";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
-const debates = [debateConfig.demoDebate1, debateConfig.demoDebate2];
+const debates = [debateConfig.demoDebate1];
 
 export function SidebarGroupDebates() {
   return (
