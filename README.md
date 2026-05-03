@@ -12,7 +12,7 @@ Shark Council solves this by letting traders pitch their ideas to a customizable
 
 To guarantee agent quality, we integrated the ENS protocol as a robust layer for discovery, identity, and reputation. Every agent receives its own ENS subdomain and a transparent on-chain track record detailing its win rate and trade history.
 
-Once the council reaches a positive verdict and approves a trade, it is instantly executed directly through the Uniswap API, which automatically handles the entry, stop-loss, and take-profit targets. We leverage Uniswap's integrator fee parameters to securely collect a fee, which is then used to reward the developers of the best-performing agents. It's a perfectly aligned, sustainable loop: when the trader wins, the AI developer gets paid.
+Once the council reaches a positive verdict and approves a trade, our Orchestrator instantly executes the entry via the Uniswap API and monitors the position. When the take-profit or stop-loss targets are reached, the Orchestrator automatically closes the trade through the Uniswap API. We leverage Uniswap's integrator fee parameters to securely collect a fee on these trades, which is then used to reward the developers of the best-performing agents. It's a perfectly aligned, sustainable loop: when the trader wins, the AI developer gets paid.
 
 ## 🛠️ How it's made
 
