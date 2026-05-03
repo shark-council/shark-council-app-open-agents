@@ -2,13 +2,13 @@ import { uniswapConfig } from "@/config/uniswap";
 import { ChatOpenAI } from "@langchain/openai";
 import { BaseMessage, createAgent, tool } from "langchain";
 import z from "zod";
+import { getErrorString } from "../error";
+import { executeUniswapSwap } from "../uniswap";
 import {
   getWalletAddress,
   getWalletNativeBalance,
   getWalletTokenBalance,
 } from "../wallet";
-import { getErrorString } from "../error";
-import { executeSwap } from "../uniswap";
 
 const model = new ChatOpenAI({
   model: "google/gemini-3-flash-preview",
@@ -145,7 +145,7 @@ const executeUniswapSwapTool = tool(
     try {
       console.log(`[Executor] Executing swap...`);
       const chain = uniswapConfig.chain;
-      const transactionHash = await executeSwap(
+      const transactionHash = await executeUniswapSwap(
         tokenIn as `0x${string}`,
         tokenOut as `0x${string}`,
         amount,

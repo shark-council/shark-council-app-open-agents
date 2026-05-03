@@ -1,6 +1,6 @@
 import { createFailedApiResponse, createSuccessApiResponse } from "@/lib/api";
 import { getErrorString } from "@/lib/error";
-import { executeSwap } from "@/lib/uniswap";
+import { executeUniswapSwap } from "@/lib/uniswap";
 import { NextRequest } from "next/server";
 import { isAddress, type Address } from "viem";
 import z from "zod";
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     const { tokenIn, tokenOut, amount } = bodyParseResult.data;
 
-    const transactionHash = await executeSwap(
+    const transactionHash = await executeUniswapSwap(
       tokenIn as Address,
       tokenOut as Address,
       amount,

@@ -11,7 +11,7 @@ import {
 import { getWalletAccount } from "./wallet";
 
 // Helper to prepare swap request body
-function prepareSwapRequest(
+function prepareUniswapSwapRequest(
   quoteResponse: Record<string, unknown>,
   signature?: string,
 ): object {
@@ -39,7 +39,7 @@ function prepareSwapRequest(
 }
 
 // Validate swap response before broadcasting
-function validateSwap(swap: {
+function validateUniswapSwap(swap: {
   data?: string;
   to?: string;
   from?: string;
@@ -55,7 +55,7 @@ function validateSwap(swap: {
   }
 }
 
-export async function executeSwap(
+export async function executeUniswapSwap(
   tokenIn: Address,
   tokenOut: Address,
   amount: string,
@@ -184,7 +184,7 @@ export async function executeSwap(
 
   // 3. Execute swap
   console.log(`[Uniswap] Submitting swap request to Trading API...`);
-  const swapRequest = prepareSwapRequest(quoteResponse, signature);
+  const swapRequest = prepareUniswapSwapRequest(quoteResponse, signature);
 
   const swapRes = await axios.post(
     `${uniswapConfig.apiUrl}/swap`,
@@ -194,7 +194,7 @@ export async function executeSwap(
   const swapData = swapRes.data;
 
   // 4. Validate before broadcasting
-  validateSwap(swapData.swap);
+  validateUniswapSwap(swapData.swap);
 
   console.log(`[Uniswap] Broadcasting swap transaction on-chain...`);
   const hash = await walletClient.sendTransaction({
