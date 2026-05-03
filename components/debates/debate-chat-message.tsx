@@ -19,10 +19,8 @@ const ROLE_LABELS: Record<DebateChatMessageRole, string> = {
 const ROLE_AVATARS: Record<DebateChatMessageRole, string | null> = {
   user: null,
   orchestrator: "/images/agents/orchestrator.png",
-  "sentiment-expert":
-    "https://shark-council-app-open-agents.vercel.app/images/agents/sentiment-expert.png",
-  "quant-expert":
-    "https://shark-council-app-open-agents.vercel.app/images/agents/quant-expert.png",
+  "sentiment-expert": "/images/agents/sentiment-expert.png",
+  "quant-expert": "/images/agents/quant-expert.png",
 };
 
 const ROLE_BADGE_STYLES: Record<DebateChatMessageRole, string> = {
