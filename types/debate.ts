@@ -13,11 +13,11 @@ export type DebateChatMessage = {
   content: string;
 };
 
-// TODO: Add chat messages
 export type Debate = {
   id: string;
   idea: string;
   agentIds: string[];
+  messages: DebateChatMessage[];
   dexScreenerUrl: string;
   uniswapTrade?: {
     chain: string;

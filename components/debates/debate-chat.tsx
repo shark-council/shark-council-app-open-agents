@@ -20,7 +20,9 @@ import { DebateChatInput } from "./debate-chat-input";
 import { DebateChatMessage } from "./debate-chat-message";
 
 export function DebateChat(props: { debate: Debate; className?: ClassValue }) {
-  const [messages, setMessages] = useState<DebateChatMessageType[]>([]);
+  const [messages, setMessages] = useState<DebateChatMessageType[]>(
+    props.debate.messages,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
