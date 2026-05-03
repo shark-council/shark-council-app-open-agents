@@ -1,5 +1,3 @@
-import { Agent } from "./agent";
-
 export type DebateChatMessageRole =
   | "user"
   | "orchestrator"
@@ -19,7 +17,7 @@ export type DebateChatMessage = {
 export type Debate = {
   id: string;
   idea: string;
-  agents: Agent[];
+  agentIds: string[];
   dexScreenerUrl: string;
   uniswapTrade?: {
     chain: string;

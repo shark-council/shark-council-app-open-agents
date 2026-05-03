@@ -5,7 +5,6 @@ import { Debate } from "@/types/debate";
 import { ClassValue } from "clsx";
 import { BotIcon, ChartCandlestickIcon, RefreshCcw } from "lucide-react";
 import Link from "next/link";
-import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
@@ -43,22 +42,23 @@ export function DebateDetails(props: {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
-            {props.debate.agents.map((agent, index) => (
-              <div className="flex flex-row items-center gap-2" key={index}>
-                <Avatar size="sm">
-                  <AvatarImage
-                    src={agent.identity.image}
-                    alt={agent.identity.name}
-                  />
-                </Avatar>
-                <p>{agent.identity.name}</p>
-                <p>/</p>
-                <Button variant="link" className="p-0" asChild>
-                  <Link href={agent.url} target="_blank">
-                    {agent.id}
-                  </Link>
-                </Button>
-              </div>
+            {props.debate.agentIds.map((agentId, index) => (
+              <p key={index}>{agentId}</p>
+              // <div className="flex flex-row items-center gap-2" key={index}>
+              //   <Avatar size="sm">
+              //     <AvatarImage
+              //       src={agent.identity.image}
+              //       alt={agent.identity.name}
+              //     />
+              //   </Avatar>
+              //   <p>{agent.identity.name}</p>
+              //   <p>/</p>
+              //   <Button variant="link" className="p-0" asChild>
+              //     <Link href={agent.url} target="_blank">
+              //       {agent.id}
+              //     </Link>
+              //   </Button>
+              // </div>
             ))}
           </div>
         </CardContent>

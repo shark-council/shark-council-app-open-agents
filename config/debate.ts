@@ -1,10 +1,9 @@
 import { Debate } from "@/types/debate";
-import { agentConfig } from "./agent";
 
 const demoDebate1: Debate = {
   id: "69f301d4affcda2138291a77",
   idea: "Is it safe to buy BTC right now considering yesterday's massive $629M institutional inflow?",
-  agents: [agentConfig.quantExpert042, agentConfig.sentimentExpert009],
+  agentIds: ["quant-expert-042", "macro-expert-017"],
   dexScreenerUrl:
     "https://dexscreener.com/base/0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef",
   uniswapTrade: {
