@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SidebarGroup,
   SidebarGroupAction,
@@ -6,18 +8,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { agentConfig } from "@/config/agent";
+import { useEnsAgents } from "@/hooks/use-ens-agents";
 import { BotIcon, Plus } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-
-const agents = [
-  agentConfig.quantExpert042,
-  agentConfig.sentimentExpert009,
-  agentConfig.macroExpert017,
-];
+import { Spinner } from "../ui/spinner";
 
 export function SidebarGroupAgents() {
+  const { data: agents, isLoading, isError } = useEnsAgents();
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>ENS sharks</SidebarGroupLabel>
@@ -27,8 +26,21 @@ export function SidebarGroupAgents() {
         </Link>
       </SidebarGroupAction>
       <SidebarMenu>
-        {agents.map((agent, index) => (
-          <SidebarMenuItem key={index}>
+        {isLoading && (
+          <SidebarMenuItem>
+            <div className="flex items-center gap-2 p-2">
+              <Spinner />
+              <p className="text-sm text-muted-foreground">Loading...</p>
+            </div>
+          </SidebarMenuItem>
+        )}
+        {isError && (
+          <SidebarMenuItem>
+            <span className="text-sm text-destructive p-2">Failed to load</span>
+          </SidebarMenuItem>
+        )}
+        {agents?.map((agent) => (
+          <SidebarMenuItem key={agent.id}>
             <SidebarMenuButton asChild>
               <Link href={agent.url} target="_blank">
                 <Avatar size="sm">
