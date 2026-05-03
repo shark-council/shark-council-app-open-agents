@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/field";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
-import { agentConfig } from "@/config/agent";
+import { useEnsAgents } from "@/hooks/use-ens-agents";
 import { handleError } from "@/lib/error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ObjectId } from "bson";
@@ -36,15 +36,10 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 
-const agents = [
-  agentConfig.quantExpert042,
-  agentConfig.sentimentExpert009,
-  agentConfig.macroExpert017,
-];
-
 export default function IndexPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { data: agents, isLoading, isError } = useEnsAgents();
 
   const formSchema = z.object({
     idea: z.string().min(1, "Trading idea is required"),
@@ -144,7 +139,20 @@ export default function IndexPage() {
                     data-slot="checkbox-group"
                     className="data-[slot=checkbox-group]:gap-6"
                   >
-                    {agents.map((agent) => {
+                    {isLoading && (
+                      <div className="flex items-center gap-2">
+                        <Spinner />
+                        <p className="text-sm text-muted-foreground">
+                          Loading...
+                        </p>
+                      </div>
+                    )}
+                    {isError && (
+                      <p className="text-sm text-destructive">
+                        Failed to load ENS sharks.
+                      </p>
+                    )}
+                    {agents?.map((agent) => {
                       const isChecked = field.value.includes(agent.id);
                       return (
                         <Field
@@ -255,7 +263,11 @@ export default function IndexPage() {
                 </FieldSet>
               )}
             />
-            <Button type="submit" form="form" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              form="form"
+              disabled={isSubmitting || isLoading}
+            >
               {isSubmitting && <Spinner />}
               Start roasting
             </Button>
