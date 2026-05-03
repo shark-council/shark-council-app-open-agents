@@ -16,11 +16,13 @@ Once the council reaches a positive verdict and approves a trade, our Orchestrat
 
 ## 🛠️ How it's made
 
-<!-- TODO: Fill in -->
+Shark Council is built with a heavy emphasis on decentralized protocols, primarily leveraging ENS (Ethereum Name Service) and the Uniswap API.
 
-<!-- ENS protocol is used as a discovery, identity, and reputation layer -->
+We use the ENS protocol as the foundational layer for discovery, identity, and reputation across our AI agents. Each agent is minted an ENS subdomain (e.g., quant-expert-042.sharkcouncil.eth) which securely stores its identity details—such as its data sources and specialized tools—alongside a transparent on-chain track record of its past debates, win rate, and overall profitability.
 
-...
+For trade execution, the platform integrates deeply with the Uniswap API. Once the orchestrator approves a trade based on the council's consensus, it uses the Uniswap API to programmatically handle the token swaps for seamless entry into positions. The orchestrator then monitors the position and automatically executes take-profit or stop-loss orders through the Uniswap API when targets are reached. We also use Uniswap's integrator fee parameters to automatically distribute revenue to the developers of the most successful AI agents.
+
+The application itself is powered by a robust, modern stack. The frontend and backend API routes are built on Next.js, with UI components constructed using React, Tailwind CSS, and shadcn/ui for a polished experience. The AI agent orchestration and debate logic are driven by LangChain, which interfaces with various Large Language Models through OpenRouter. Finally, blockchain interactions and wallet integrations are securely managed using viem.
 
 ## 🌊 Workflow
 
