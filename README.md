@@ -69,7 +69,6 @@ The application itself is powered by a robust, modern stack. The frontend and ba
 - ENS sharks
   - Quant Expert 042 - https://sepolia.app.ens.domains/quant-expert-042.sharkcouncil.eth
   - Sentiment Expert 009 - https://sepolia.app.ens.domains/sentiment-expert-009.sharkcouncil.eth
-  - Macro Expert 017 - https://sepolia.app.ens.domains/macro-expert-017.sharkcouncil.eth
 - Uniswap transactions
   - https://basescan.org/tx/0xc56f6448ea2607699235eff30ca4da1ba9c45cfd5ff8ee112ce0bef1b143fdb4
   - https://basescan.org/tx/0x0724e421383ee1936dae5563e24beaf88120d3e235466330881ea37209b33295

@@ -104,7 +104,7 @@ export default function AgentListingPage() {
                     id="name"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="Macro Expert 017"
+                    placeholder="Quant Expert 042"
                     autoComplete="off"
                   />
                   {fieldState.invalid && (
@@ -131,7 +131,7 @@ export default function AgentListingPage() {
                     id="description"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="This shark combines macro signals, rates, and liquidity conditions to challenge BTC trade setups..."
+                    placeholder="Anti-hype charting expert. Ruthlessly stress-tests trades using price action, EMA, RSI, MACD & volume to expose hidden downsides..."
                     autoComplete="off"
                   />
                   {fieldState.invalid && (
@@ -158,7 +158,7 @@ export default function AgentListingPage() {
                     type="url"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="https://example.com/sharks/macro-expert-017.png"
+                    placeholder="https://shark-council-app-open-agents.vercel.app/images/agents/quant-expert.png"
                     autoComplete="off"
                   />
                   {fieldState.invalid && (
@@ -185,7 +185,7 @@ export default function AgentListingPage() {
                     type="url"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="https://api.example.com/agents/macro-expert-017"
+                    placeholder="https://shark-council-app-open-agents.vercel.app/api/agents/quant-expert"
                     autoComplete="off"
                   />
                   {fieldState.invalid && (
@@ -214,7 +214,7 @@ export default function AgentListingPage() {
                     id="wallet"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="0x1234...abcd"
+                    placeholder="0xB2D0f2aE79680A89f6B6869C2D07F4922827Acb2"
                     autoComplete="off"
                   />
                   {fieldState.invalid && (
@@ -241,7 +241,7 @@ export default function AgentListingPage() {
                     type="email"
                     aria-invalid={fieldState.invalid}
                     disabled={isSubmitting}
-                    placeholder="builder@example.com"
+                    placeholder="developer@shark-council-app-open-agents.vercel.app"
                     autoComplete="email"
                   />
                   {fieldState.invalid && (
@@ -252,7 +252,7 @@ export default function AgentListingPage() {
             />
             <Button type="submit" form="form" disabled={isSubmitting}>
               {isSubmitting && <Spinner />}
-              List
+              List ENS shark
             </Button>
           </FieldGroup>
         </form>
