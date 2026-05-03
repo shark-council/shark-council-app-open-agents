@@ -28,4 +28,5 @@ const demoDebate1: Debate = {
 
 export const debateConfig = {
   demoDebate1,
+  demoDebates: [demoDebate1],
 };
